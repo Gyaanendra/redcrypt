@@ -4,209 +4,155 @@
 {% get_providers as socialaccount_providers %}
 {% get_social_accounts user as accounts %}
 {% block head_title %}
-  Profile
+Profile
 {% endblock head_title %}
-{% block head %}
-  <style>
-  .profile-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  @media (max-width: 768px) {
-    .button-group {
-      width: 100%;
-    }
-    
-    .button-group button {
-      width: 100%;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .account-dropdown-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-  }
-
-  .account-dropdown-content.show {
-    max-height: 300px;
-  }
-
-  .stat-card-hover-effect {
-    transition: all 0.3s ease;
-  }
-
-  .stat-card-hover-effect:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(8, 183, 79, 0.1);
-  }
-  </style>
-{% endblock head %}
 {% block content %}
-  <div class="container mx-auto px-4 my-8">
-    <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="800">
-      <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-3xl overflow-visible">
-        <div class="h-24 md:h-32 bg-gradient-to-r from-green-600/20 to-blue-600/20 relative rounded-t-3xl">
-          <div class="absolute -bottom-5 right-6 z-10 hidden md:block">
-            <a href="{% url 'edit_profile' %}"
-               class="flex items-center gap-2 bg-neutral-900/50 hover:bg-green-600 text-neutral-100 px-4 py-2 rounded-full transition-all duration-300 shadow-inset-white backdrop-blur-xl">
-                <span class="ph-fill ph-pencil-simple text-lg"></span>
-              <span class="font-medium">Edit Profile</span>
-            </a>
-          </div>
+<div class="container mx-auto px-4 my-8 retro-dots">
+  <div class="max-w-4xl mx-auto" data-aos="fade-up">
+    <!-- Profile Card -->
+    <div class="retro-card p-6 md:p-8">
+      <div class="pixel-accent mb-6"></div>
+
+      <!-- Avatar & Username -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="pixel-border pixelated w-24 h-24 md:w-32 md:h-32 mb-4 relative">
+          <img src="{% avatar user %}" alt="Profile" class="w-full h-full object-cover pixelated">
         </div>
-        <div class="px-4 md:px-8 pb-6 md:pb-8 pt-8 md:pt-0">
-          <div class="flex justify-center">
-            <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-green-600/50 shadow-lg hover:scale-105 transition-transform duration-300 -mt-16 md:-mt-12 bg-neutral-900">
-              <img src="{% avatar user %}"
-                   alt="Profile Picture"
-                   class="w-full h-full object-cover"
-                   width="auto"
-                   height="auto">
+        <div class="flex items-center gap-2">
+          <h1 class="font-pixel text-xl md:text-2xl text-primary crt-glow">{{ user.username }}</h1>
+          {% if user.emailaddress_set.all.0.verified %}
+          <i class="ph-fill ph-shield-check text-primary text-xl crt-glow-sm" title="Verified"></i>
+          {% else %}
+          <i class="ph-fill ph-warning text-secondary text-xl crt-glow-sm" title="Pending"></i>
+          {% endif %}
+        </div>
+        <a href="{% url 'edit_profile' %}"
+          class="retro-btn bg-secondary text-dark border-secondary mt-4 px-6 py-2 text-xs flex items-center gap-2 inline-flex">
+          <i class="ph-bold ph-pencil-simple"></i>
+          <span>Edit Profile</span>
+        </a>
+      </div>
+
+      <div class="pixel-accent-amber mb-6"></div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-medal-military text-3xl text-secondary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Rank</p>
+          <p class="text-xl font-bold text-light">{{ rank|safe }}</p>
+        </div>
+
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-chart-line-up text-3xl text-primary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Score</p>
+          <p class="text-xl font-bold text-light">{{ profile.score }}</p>
+        </div>
+
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-trend-up text-3xl text-secondary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Level</p>
+          <p class="text-xl font-bold text-light">{{ profile.current_level }}</p>
+        </div>
+      </div>
+
+      <!-- User Info -->
+      <div class="space-y-3">
+        <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-4 flex items-center gap-2">
+          <i class="ph-fill ph-user-gear"></i>
+          User Info
+        </h3>
+
+        <div class="retro-container p-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <i class="ph-fill ph-envelope text-primary"></i>
+              <span class="retro-text text-light truncate text-sm">{{ user.email }}</span>
             </div>
+            {% if user.emailaddress_set.all.0.verified %}
+            <span class="inline-flex items-center gap-1 text-primary text-xs bg-primary/10 px-3 py-1 rounded">
+              <i class="ph-fill ph-seal-check"></i>
+              Verified
+            </span>
+            {% else %}
+            <form action="{% url 'send_confirmation_email' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="retro-btn bg-secondary text-dark border-secondary px-4 py-1 text-xs">
+                <i class="ph-bold ph-paper-plane-tilt text-xs"></i>
+                Verify
+              </button>
+            </form>
+            {% endif %}
           </div>
-          <div class="text-center mt-4 space-y-1">
-            <div class="w-full justify-center items-center flex flex-row gap-x-2">
-              <h1 class="text-3xl font-bold text-neutral-100">{{ user.username }}</h1>
-              {% if user.emailaddress_set.all.0.verified %}
-                <span class="ph-fill ph-shield-check text-green-500 cursor-pointer text-xl"
-                      title="Email Verified"></span>
+
+          <div class="pixel-accent-amber my-3"></div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <i class="ph-fill ph-user text-secondary"></i>
+              {% if profile.name %}
+              <span class="retro-text text-light text-sm">{{ profile.name }}</span>
               {% else %}
-                <span class="ph-fill ph-warning text-xl text-amber-500 cursor-pointer"
-                      title="Email Pending Verification"></span>
+              <span class="retro-text text-light/40 text-sm">Display name not set</span>
               {% endif %}
             </div>
-            <div class="md:hidden pt-6">
-              <a href="{% url 'edit_profile' %}"
-                 class="inline-flex items-center gap-2 bg-neutral-900/50 hover:bg-green-600 text-neutral-100 px-4 py-2 rounded-full transition-all duration-300 shadow-inset-white backdrop-blur-xl">
-                <span class="ph-fill ph-pencil-simple text-base"></span>
-                <span class="font-medium">Edit Profile</span>
-              </a>
-            </div>
+            {% if not profile.name %}
+            <a href="{% url 'edit_profile' %}"
+              class="retro-btn bg-secondary text-dark border-secondary px-4 py-1 text-xs">
+              <i class="ph-bold ph-pencil-simple text-xs"></i>
+              Set
+            </a>
+            {% endif %}
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8">
-            <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-purple-600/50 text-left hover:shadow-lg hover:shadow-purple-600/10 stat-card-hover-effect"
-                 data-aos="fade-up"
-                 data-aos-delay="100">
-              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-600/20 text-purple-500 mb-4">
-                <span class="ph-fill ph-medal-military text-2xl"></span>
-              </div>
-              <p class="text-neutral-400 text-sm">Current Rank</p>
-              <p class="text-2xl font-bold text-neutral-100">{{ rank|safe }}</p>
+
+          <div class="pixel-accent-amber my-3"></div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <i class="ph-fill ph-graduation-cap text-secondary"></i>
+              {% if profile.organization %}
+              <span class="retro-text text-light text-sm">{{ profile.organization }}</span>
+              {% else %}
+              <span class="retro-text text-light/40 text-sm">Organization not set</span>
+              {% endif %}
             </div>
-            <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-green-600/50 text-left hover:shadow-lg hover:shadow-green-600/10 stat-card-hover-effect"
-                 data-aos="fade-up"
-                 data-aos-delay="200">
-              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-green-600/20 text-green-500 mb-4">
-                <span class="ph-fill ph-chart-line-up text-2xl"></span>
-              </div>
-              <p class="text-neutral-400 text-sm">Total Score</p>
-              <p class="text-2xl font-bold text-neutral-100">{{ profile.score }}</p>
-            </div>
-            <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-blue-600/50 text-left hover:shadow-lg hover:shadow-blue-600/10 stat-card-hover-effect"
-                 data-aos="fade-up"
-                 data-aos-delay="300">
-              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600/20 text-blue-500 mb-4">
-                <span class="ph-fill ph-trend-up text-2xl"></span>
-              </div>
-              <p class="text-neutral-400 text-sm">Current Level</p>
-              <p class="text-2xl font-bold text-neutral-100">{{ profile.current_level }}</p>
-            </div>
-          </div>
-          <div class="mt-6 md:mt-8 space-y-4">
-            <h3 class="text-neutral-400 text-sm mb-4 flex items-center gap-2">
-              <span class="ph-fill ph-user-gear text-xl"></span>
-              User Actions
-            </h3>
-            <div class="bg-neutral-800/50 rounded-xl px-4 py-1"
-                 data-aos="fade-up"
-                 data-aos-delay="400">
-              <div class="flex flex-col sm:flex-row sm:items-center gap-3 py-3">
-                <div class="flex items-center gap-2 min-w-0 flex-1">
-                  <span class="ph-fill ph-envelope text-xl text-green-500">mail</span>
-                  <span class="text-neutral-100 truncate">{{ user.email }}</span>
-                </div>
-                {% if user.emailaddress_set.all.0.verified %}
-                  <span class="w-full sm:w-auto inline-flex items-center gap-1 text-green-500 text-sm bg-green-500/10 px-4 py-1 rounded-full hover:bg-green-500/20 transition-colors justify-center">
-                    <span class="ph-fill ph-seal-check text-base"></span>
-                    Verified
-                  </span>
-                {% else %}
-                  <form action="{% url 'send_confirmation_email' %}"
-                        method="post"
-                        class="flex-shrink-0 w-full sm:w-auto">
-                    {% csrf_token %}
-                    <button type="submit"
-                            class="w-full sm:w-auto inline-flex items-center gap-1 text-amber-500 text-sm bg-amber-500/10 px-4 py-1 rounded-full hover:bg-amber-500/20 transition-colors justify-center">
-                      <span class="ph-fill ph-paper-plane-tilt text-base"></span>
-                      Verify Email
-                    </button>
-                  </form>
-                {% endif %}
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-3 py-3 border-t border-neutral-700">
-                <div class="flex items-center gap-2 min-w-0 flex-1">
-                  <span class="ph-fill ph-user text-xl text-purple-500"></span>
-                  {% if profile.name %}
-                    <span class="text-neutral-100">{{ profile.name }}</span>
-                  {% else %}
-                    <span class="text-neutral-400 text-sm">Display name not set</span>
-                  {% endif %}
-                </div>
-                {% if not profile.name %}
-                  <a href="{% url 'edit_profile' %}"
-                     class="w-full sm:w-auto inline-flex items-center gap-1 text-purple-500 text-sm bg-purple-500/10 px-4 py-1 rounded-full hover:bg-purple-500/20 transition-colors justify-center">
-                    <span class="ph-fill ph-pencil-simple text-base"></span>
-                    Set Name
-                  </a>
-                {% endif %}
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-3 py-3 border-t border-neutral-700">
-                <div class="flex items-center gap-2 min-w-0 flex-1">
-                  <span class="ph-fill ph-graduation-cap text-blue-500 text-xl"></span>
-                  {% if profile.organization %}
-                    <span class="text-neutral-100">{{ profile.organization }}</span>
-                  {% else %}
-                    <span class="text-neutral-400 text-sm">Organization not set</span>
-                  {% endif %}
-                </div>
-                {% if not profile.organization %}
-                  <a href="{% url 'edit_profile' %}"
-                     class="w-full sm:w-auto inline-flex items-center gap-1 text-blue-500 text-sm bg-blue-500/10 px-4 py-1 rounded-full hover:bg-blue-500/20 transition-colors justify-center">
-                    <span class="ph-fill ph-pencil-simple text-base"></span>
-                    Set Organization
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-            <div class="mt-6 md:mt-8">
-              <h3 class="text-neutral-400 text-sm mb-4 flex items-center gap-2">
-                <span class="ph-fill ph-gear text-xl"></span>
-                Account Actions
-              </h3>
-              <div class="space-y-2">
-                <a href="{% url 'account_change_password' %}"
-                   class="w-full flex items-center gap-2 px-4 py-3 text-neutral-100 bg-neutral-800/50 hover:bg-neutral-700/50 rounded-lg transition-colors">
-                  <span class="ph-bold ph-password text-xl"></span>
-                  Change Password
-                </a>
-                <form action="{% url 'account_logout' %}" method="post" class="w-full">
-                  {% csrf_token %}
-                  <button type="submit"
-                          class="w-full flex items-center gap-2 px-4 py-3 text-red-500 bg-neutral-800/50 hover:bg-red-500/10 rounded-lg transition-colors">
-                    <span class="ph-bold ph-sign-out text-xl"></span>
-                    Sign Out
-                  </button>
-                </form>
-              </div>
-            </div>
+            {% if not profile.organization %}
+            <a href="{% url 'edit_profile' %}"
+              class="retro-btn bg-secondary text-dark border-secondary px-4 py-1 text-xs">
+              <i class="ph-bold ph-pencil-simple text-xs"></i>
+              Set
+            </a>
+            {% endif %}
           </div>
         </div>
       </div>
+
+      <!-- Account Actions -->
+      <div class="mt-8">
+        <div class="pixel-accent mb-4"></div>
+        <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-4 flex items-center gap-2">
+          <i class="ph-fill ph-gear"></i>
+          Account Actions
+        </h3>
+        <div class="space-y-3">
+          <a href="{% url 'account_change_password' %}"
+            class="retro-btn w-full bg-light text-dark border-light flex items-center gap-3 px-4 py-3 text-xs">
+            <i class="ph-bold ph-password"></i>
+            <span>Change Password</span>
+          </a>
+          <form action="{% url 'account_logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit"
+              class="retro-btn w-full bg-dark text-secondary border-secondary flex items-center gap-3 px-4 py-3 text-xs">
+              <i class="ph-bold ph-sign-out"></i>
+              <span>Sign Out</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pixel-accent-amber mt-6"></div>
     </div>
   </div>
-  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+</div>
 {% endblock content %}

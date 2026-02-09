@@ -4,89 +4,78 @@
 {% get_providers as socialaccount_providers %}
 {% get_social_accounts user as accounts %}
 {% block head_title %}{{ usern.username }} Profile {% endblock head_title %}
-
-{% block head %}
-<style>
-  .stat-card-hover-effect {
-    transition: all 0.3s ease;
-  }
-
-  .stat-card-hover-effect:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(8, 183, 79, 0.1);
-  }
-</style>
-{% endblock head %}
-
 {% block content %}
-<div class="container mx-auto px-4 my-8">
-  <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="800">
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-3xl overflow-visible">
-      <div class="h-24 md:h-32 bg-gradient-to-r from-green-600/20 to-blue-600/20 relative rounded-t-3xl"></div>
-      
-      <div class="px-4 md:px-8 pb-6 md:pb-8 pt-8 md:pt-0">
-        <div class="flex justify-center">
-          <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-green-600/50 shadow-lg -mt-16 md:-mt-12 bg-neutral-900">
-            <img src="{% avatar usern %}" alt="Profile Picture" class="w-full h-full object-cover" width="auto" height="auto">
-          </div>
+<div class="container mx-auto px-4 my-8 retro-dots">
+  <div class="max-w-3xl mx-auto" data-aos="fade-up">
+    <!-- Public Profile Card -->
+    <div class="retro-card p-6 md:p-8">
+      <div class="pixel-accent mb-6"></div>
+
+      <!-- Avatar & Username -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="pixel-border pixelated w-24 h-24 md:w-28 md:h-28 mb-4">
+          <img src="{% avatar usern %}" alt="{{ usern.username }}" class="w-full h-full object-cover pixelated">
         </div>
-
-        <div class="text-centerspace-y-1 pt-4">
-          <h1 class="text-3xl font-bold text-neutral-100">{{ usern.username }}</h1>
-          {% if profile.is_banned %}
-          <div class="inline-flex items-center gap-2 text-red-500 bg-red-500/10 px-4 py-2 rounded-full mt-4">
-            <span class="ph-fill ph-warning">warning</span>
-            <span class="font-bold">Banned</span>
-          </div>
-          {% endif %}
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8">
-          <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-purple-600/50 text-left hover:shadow-lg hover:shadow-purple-600/10 stat-card-hover-effect">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-600/20 text-purple-500 mb-4">
-              <span class="ph-fill ph-medal-military text-2xl"></span>
-            </div>
-            <p class="text-neutral-400 text-sm">Current Rank</p>
-            <p class="text-2xl font-bold text-neutral-100">{{ rank|safe }}</p>
-          </div>
-
-          <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-green-600/50 text-left hover:shadow-lg hover:shadow-green-600/10 stat-card-hover-effect">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-green-600/20 text-green-500 mb-4">
-              <span class="ph-fill ph-chart-line-up text-2xl"></span>
-            </div>
-            <p class="text-neutral-400 text-sm">Total Score</p>
-            <p class="text-2xl font-bold text-neutral-100">{{ profile.score }}</p>
-          </div>
-
-          <div class="bg-neutral-900/50 rounded-xl p-4 md:p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-blue-600/50 text-left hover:shadow-lg hover:shadow-blue-600/10 stat-card-hover-effect">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600/20 text-blue-500 mb-4">
-              <span class="ph-fill ph-trend-up text-2xl"></span>
-            </div>
-            <p class="text-neutral-400 text-sm">Current Level</p>
-            <p class="text-2xl font-bold text-neutral-100">{{ profile.current_level }}</p>
-          </div>
-        </div>
-
-        {% if profile.is_public_name or profile.is_public_organization %}
-        <div class="mt-6 md:mt-8 space-y-4">
-          <div class="bg-neutral-900/50 rounded-xl px-4 py-2">
-            {% if profile.is_public_name and profile.name %}
-            <div class="flex items-center gap-2 py-3">
-              <span class="ph-fill ph-user text-xl text-purple-500"></span>
-              <span class="text-neutral-100">{{ profile.name }}</span>
-            </div>
-            {% endif %}
-
-            {% if profile.is_public_organization and profile.organization %}
-            <div class="flex items-center gap-2 py-3 {% if profile.is_public_name %}border-t border-neutral-800{% endif %}">
-              <span class="ph-fill ph-graduation-cap text-xl text-blue-500"></span>
-              <span class="text-neutral-100">{{ profile.organization }}</span>
-            </div>
-            {% endif %}
-          </div>
+        <h1 class="font-pixel text-xl md:text-2xl text-primary crt-glow mb-2">{{ usern.username }}</h1>
+        {% if profile.is_banned %}
+        <div class="inline-flex items-center gap-2 bg-dark px-4 py-2 pixel-border-amber mt-2">
+          <i class="ph-fill ph-warning text-secondary"></i>
+          <span class="font-pixel text-xs text-secondary">Banned</span>
         </div>
         {% endif %}
       </div>
+
+      <div class="pixel-accent-amber mb-6"></div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-medal-military text-3xl text-secondary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Rank</p>
+          <p class="text-xl font-bold text-light">{{ rank|safe }}</p>
+        </div>
+
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-chart-line-up text-3xl text-primary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Score</p>
+          <p class="text-xl font-bold text-light">{{ profile.score }}</p>
+        </div>
+
+        <div class="retro-container p-4 text-center">
+          <i class="ph-fill ph-trend-up text-3xl text-secondary mb-2 crt-glow-sm block"></i>
+          <p class="font-pixel text-xs text-light/60 mb-1">Level</p>
+          <p class="text-xl font-bold text-light">{{ profile.current_level }}</p>
+        </div>
+      </div>
+
+      <!-- Public Info (if available) -->
+      {% if profile.is_public_name or profile.is_public_organization %}
+      <div class="pixel-accent mb-4"></div>
+      <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-4 flex items-center gap-2">
+        <i class="ph-fill ph-info"></i>
+        Public Info
+      </h3>
+      <div class="retro-container p-4 space-y-3">
+        {% if profile.is_public_name and profile.name %}
+        <div class="flex items-center gap-2">
+          <i class="ph-fill ph-user text-secondary"></i>
+          <span class="retro-text text-light text-sm">{{ profile.name }}</span>
+        </div>
+        {% if profile.is_public_organization and profile.organization %}
+        <div class="pixel-accent-amber"></div>
+        {% endif %}
+        {% endif %}
+
+        {% if profile.is_public_organization and profile.organization %}
+        <div class="flex items-center gap-2">
+          <i class="ph-fill ph-graduation-cap text-secondary"></i>
+          <span class="retro-text text-light text-sm">{{ profile.organization }}</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="pixel-accent-amber mt-6"></div>
     </div>
   </div>
 </div>

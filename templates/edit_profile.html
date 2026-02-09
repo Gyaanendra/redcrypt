@@ -1,189 +1,200 @@
 {% extends "base.html" %}
 {% load socialaccount %}
 {% load profile_tags %}
+
 {% block head_title %}Edit Profile{% endblock head_title %}
 
 {% block head %}
 <style>
-.switch-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 24px;
-}
-
-.switch-wrapper input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.switch {
-  position: absolute;
-  cursor: pointer;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: .4s;
-  border-radius: 24px;
-}
-
-.switch:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .switch {
-  background-color: #08b74f;
-}
-
-input:checked + .switch:before {
-  transform: translateX(24px);
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  /* Retro toggle switch */
+  .switch-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
   }
-}
 
-.form-field {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s forwards;
-}
+  .switch-wrapper input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .switch {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: rgba(45, 29, 14, 0.8);
+    transition: .3s;
+    border-radius: 2px;
+    border: 2px solid rgba(221, 207, 181, 0.3);
+  }
+
+  .switch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ddcfb5;
+    transition: .3s;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  input:checked+.switch {
+    background-color: #08b74f;
+    border-color: #08b74f;
+  }
+
+  input:checked+.switch:before {
+    transform: translateX(24px);
+    box-shadow: 0 0 10px rgba(8, 183, 79, 0.5);
+  }
 </style>
 {% endblock head %}
 
 {% block content %}
-<div class="container mx-auto px-4 my-8">
-  <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="800">
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-3xl overflow-hidden">
-      <div class="h-24 md:h-32 bg-gradient-to-r from-green-600/20 to-blue-600/20 relative rounded-t-3xl">
-        <div class="absolute -bottom-12 flex justify-center w-full">
-          <div class="relative w-24 h-24 rounded-full overflow-hidden border-4 border-green-600/50 shadow-lg hover:scale-105 transition-transform duration-300 bg-neutral-900">
-            <img src="{% avatar user %}" alt="Profile Picture" class="w-full h-full object-cover" width="auto" height="auto">
-          </div>
+<div class="container mx-auto px-4 my-8 retro-dots">
+  <div class="max-w-2xl mx-auto" data-aos="fade-up">
+    <div class="retro-card p-6 md:p-8">
+      <div class="pixel-accent mb-6"></div>
+
+      <!-- Header -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="pixel-border pixelated w-20 h-20 md:w-24 md:h-24 mb-4">
+          <img src="{% avatar user %}" alt="Profile" class="w-full h-full object-cover pixelated">
         </div>
+        <h1 class="font-pixel text-xl md:text-2xl text-primary crt-glow">Edit Profile</h1>
       </div>
 
-      <div class="px-6 md:px-8 pb-6 pt-16">
-        <h1 class="text-2xl font-bold text-neutral-100 text-center mb-8">Edit Profile</h1>
-        
-        <form id="profile_form" class="space-y-6" data-aos="fade-up" data-aos-delay="200">
-          {% csrf_token %}
-          
-          <div class="form-field" style="animation-delay: 100ms">
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-sm font-medium text-neutral-400 mx-1">Username</label>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-neutral-500 group relative">
-                  <span class="ph-fill ph-info text-base"></span>
-                  <span class="absolute -top-2 right-full mr-2 bg-neutral-900/90 px-3 py-2 rounded-lg text-xs w-max opacity-0 group-hover:opacity-100 transition-opacity">Cannot be changed</span>
-                </span>
-              </div>
-            </div>
-            <input type="text" value="{{ user.username }}" class="w-full bg-neutral-800/70 shadow-inset-white backdrop-blur-md text-neutral-100 rounded-xl px-4 py-3 opacity-50 cursor-not-allowed" disabled>
-          </div>
+      <div class="pixel-accent-amber mb-6"></div>
 
-          <div class="form-field" style="animation-delay: 200ms">
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-sm font-medium text-neutral-400 mx-1">Email</label>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-neutral-500 group relative">
-                  <span class="ph-fill ph-info text-base"></span>
-                  <span class="absolute -top-2 right-full mr-2 bg-neutral-900/90 px-3 py-2 rounded-lg text-xs w-max opacity-0 group-hover:opacity-100 transition-opacity">Cannot be changed</span>
-                </span>
-              </div>
-            </div>
-            <input type="email" value="{{ user.email }}" class="w-full bg-neutral-800/70 shadow-inset-white backdrop-blur-md text-neutral-100 rounded-xl px-4 py-3 opacity-50 cursor-not-allowed" disabled>
-          </div>
+      <!-- Edit Profile Form -->
+      <form id="profile_form" class="space-y-6">
+        {% csrf_token %}
 
-          <div class="form-field" style="animation-delay: 300ms">
-            <div class="flex justify-between items-center mb-2">
-              <label for="name" class="text-sm font-medium text-neutral-400 mx-1">Display Name</label>
-              <div class="flex items-center gap-2">
-                <label class="text-sm text-neutral-400">Make Public</label>
-                <label class="switch-wrapper">
-                  <input type="checkbox" name="is_name_public" {% if profile.is_public_name %}checked{% endif %}>
-                  <span class="switch"></span>
-                </label>
-              </div>
+        <!-- Username (Disabled) -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-pixel text-xs text-light crt-glow-sm">Username</label>
+            <div class="group relative">
+              <i class="ph-fill ph-info text-light/40 cursor-help"></i>
+              <span
+                class="absolute -top-8 right-0 bg-dark border-2 border-light/20 px-3 py-1 rounded text-xs text-light whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Cannot be changed
+              </span>
             </div>
-            <input type="text" id="name" name="name" value="{{ profile.name }}" 
-                   class="w-full bg-neutral-800/70 shadow-inset-white backdrop-blur-md text-neutral-100 rounded-xl px-4 py-3 hover:ring hover:ring-green-500 focus:ring focus:ring-green-500 focus:outline-none transition-all duration-300"
-                   placeholder="Enter your display name">
           </div>
+          <input type="text" value="{{ user.username }}" class="w-full opacity-50 cursor-not-allowed" disabled>
+        </div>
 
-          <div class="form-field" style="animation-delay: 400ms">
-            <div class="flex justify-between items-center mb-2">
-              <label for="organization" class="text-sm font-medium text-neutral-400 mx-1">College/Organization</label>
-              <div class="flex items-center gap-2">
-                <label class="text-sm text-neutral-400">Make Public</label>
-                <label class="switch-wrapper">
-                  <input type="checkbox" name="is_organization_public" {% if profile.is_public_organization %}checked{% endif %}>
-                  <span class="switch"></span>
-                </label>
-              </div>
+        <!-- Email (Disabled) -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-pixel text-xs text-light crt-glow-sm">Email</label>
+            <div class="group relative">
+              <i class="ph-fill ph-info text-light/40 cursor-help"></i>
+              <span
+                class="absolute -top-8 right-0 bg-dark border-2 border-light/20 px-3 py-1 rounded text-xs text-light whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Cannot be changed
+              </span>
             </div>
-            <input type="text" id="organization" name="organization" value="{{ profile.organization }}" 
-                   class="w-full bg-neutral-800/70 shadow-inset-white backdrop-blur-md text-neutral-100 rounded-xl px-4 py-3 hover:ring hover:ring-green-500 focus:ring focus:ring-green-500 focus:outline-none transition-all duration-300"
-                   placeholder="Enter your organization">
           </div>
+          <input type="email" value="{{ user.email }}" class="w-full opacity-50 cursor-not-allowed" disabled>
+        </div>
 
-          <div class="form-field flex flex-col md:flex-row gap-3 pt-4" style="animation-delay: 500ms">
-            <a href="{% url 'profile' %}" class="md:flex-1 order-2 md:order-1 w-full">
-              <button type="button" class="w-full bg-neutral-900/70 shadow-inset-white hover:bg-red-600/20 text-red-500 font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center md:justify-center gap-2">
-                <span class="ph-bold ph-x"></span>
-                Cancel
-              </button>
-            </a>
-            <button type="submit" class="md:flex-1 order-1 md:order-2 bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center md:justify-center gap-2">
-              <span class="ph-bold ph-floppy-disk"></span>
-              Save
+        <div class="pixel-accent my-4"></div>
+
+        <!-- Display Name -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="name" class="font-pixel text-xs text-light crt-glow-sm">Display Name</label>
+            <div class="flex items-center gap-2">
+              <label class="retro-text text-light/60 text-xs">Public</label>
+              <label class="switch-wrapper">
+                <input type="checkbox" name="is_name_public" {% if profile.is_public_name %}checked{% endif %}>
+                <span class="switch"></span>
+              </label>
+            </div>
+          </div>
+          <input type="text" id="name" name="name" value="{{ profile.name }}" placeholder="Enter your display name"
+            class="w-full">
+        </div>
+
+        <!-- Organization -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="organization" class="font-pixel text-xs text-light crt-glow-sm">Organization</label>
+            <div class="flex items-center gap-2">
+              <label class="retro-text text-light/60 text-xs">Public</label>
+              <label class="switch-wrapper">
+                <input type="checkbox" name="is_organiz" {% if profile.is_public_organization %}checked{% endif %}>
+                <span class="switch"></span>
+              </label>
+            </div>
+          </div>
+          <input type="text" id="organization" name="organization" value="{{ profile.organization }}"
+            placeholder="Enter your college or organization" class="w-full">
+        </div>
+
+        <div class="pixel-accent-amber my-6"></div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col md:flex-row gap-3">
+          <a href="{% url 'profile' %}" class="flex-1">
+            <button type="button"
+              class="retro-btn w-full bg-dark text-light border-light flex items-center justify-center gap-3 px-4 py-3">
+              <i class="ph-bold ph-x"></i>
+              <span>Cancel</span>
             </button>
-          </div>
-        </form>
-      </div>
+          </a>
+          <button type="submit"
+            class="retro-btn flex-1 bg-primary text-dark border-primary flex items-center justify-center gap-3 px-4 py-3">
+            <i class="ph-bold ph-floppy-disk"></i>
+            <span>Save</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="pixel-accent mt-6"></div>
     </div>
   </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-    $('#profile_form').submit(function(e){
-        e.preventDefault();
-        const form = $(this);
-        const submitBtn = form.find('button[type="submit"]');
-        
-        submitBtn.prop('disabled', true);
-        submitBtn.html('<span class="ph-bold ph-arrows-clockwise animate-spin"></span> Saving...');
-        
-        $.ajax({
-            type: 'POST',
-            url: '{% url "save_profile" %}',
-            data: form.serialize(),
-            success: function(data){
-                showToast("Profile updated successfully!", 3000, 'SUCCESS');
-                setTimeout(function(){
-                    window.location.href = "{% url 'profile' %}";
-                }, 1500);
-            },
-            error: function(response){
-                showToast("Failed to update profile", 3000, 'ERROR');
-                submitBtn.prop('disabled', false);
-                submitBtn.html('<span class="ph-bold ph-floppy-disk"></span> Save Changes');
-            }
-        });
+  $(document).ready(function () {
+    $('#profile_form').submit(function (e) {
+      e.preventDefault();
+      const form = $(this);
+      const submitBtn = form.find('button[type="submit"]');
+      const btnIcon = submitBtn.find('i');
+      const btnText = submitBtn.find('span');
+
+      submitBtn.prop('disabled', true);
+      btnIcon.removeClass('ph-floppy-disk').addClass('ph-arrows-clockwise animate-spin');
+      btnText.text('Saving...');
+
+      $.ajax({
+        type: 'POST',
+        url: '{% url "save_profile" %}',
+        data: form.serialize(),
+        success: function (data) {
+          showToast("Profile updated successfully!", 3000, 'SUCCESS');
+          setTimeout(function () {
+            window.location.href = "{% url 'profile' %}";
+          }, 1500);
+        },
+        error: function (response) {
+          showToast("Failed to update profile", 3000, 'ERROR');
+          submitBtn.prop('disabled', false);
+          btnIcon.removeClass('ph-arrows-clockwise animate-spin').addClass('ph-floppy-disk');
+          btnText.text('Save');
+        }
+      });
     });
-});
+  });
 </script>
 {% endblock content %}

@@ -1,7 +1,6 @@
 {% load static %}
 <nav
-  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-dark backdrop-blur-md md:hidden m-3"
-  style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #08b74f;">
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-dark backdrop-blur-md md:hidden m-3 pixel-border">
   <a href="{% url 'index' %}">
     <img src="{% static 'logo_banner.svg' %}" alt="Re-Dcrypt Logo" class="h-6 pixelated" width="auto" height="auto" />
   </a>
@@ -11,46 +10,47 @@
   </button>
 </nav>
 <div id="mobile-menu"
-  class="fixed inset-x-0 top-[76px] bg-dark transform -translate-y-[150%] transition-transform duration-500 ease-in-out backdrop-blur-md z-40 md:hidden m-4"
-  style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #fec84b;">
+  class="fixed inset-x-0 top-[76px] bg-dark transform -translate-y-[150%] transition-transform duration-500 ease-in-out backdrop-blur-md z-40 md:hidden m-4 pixel-border-amber">
   <div class="flex flex-col px-6 py-6">
-    <div class="neo-accent mb-4"></div>
+    <div class="pixel-accent mb-4"></div>
     <nav class="flex flex-col space-y-3">
       <a href="{% url 'leaderboard' %}"
-        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3">
+        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3 transition-colors">
         <i class="ph-fill ph-ranking"></i>
         Leaderboard
       </a>
       <a href="{% url 'help' %}"
-        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3">
+        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3 transition-colors">
         <i class="ph-fill ph-question"></i>
         Help
       </a>
       <a href="{% url 'about' %}"
-        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3">
+        class="retro-text text-light hover:text-primary py-2 text-left px-4 flex items-center gap-x-3 transition-colors">
         <i class="ph-fill ph-info"></i>
         About
       </a>
     </nav>
-    <div class="neo-accent-amber my-4"></div>
+    <div class="pixel-accent-amber my-4"></div>
     <div class="flex flex-col space-y-3 mt-2">
-      <a href="{% url 'account_login' %}" class="retro-btn text-center bg-light text-dark py-3 px-4">Login</a>
-      <a href="{% url 'account_signup' %}" class="retro-btn text-center bg-primary text-dark py-3 px-4">Signup</a>
+      <a href="{% url 'account_login' %}"
+        class="retro-btn text-center bg-light border-light text-dark py-3 px-4">Login</a>
+      <a href="{% url 'account_signup' %}"
+        class="retro-btn text-center bg-primary border-primary text-dark py-3 px-4">Signup</a>
     </div>
   </div>
 </div>
 
 <!-- DESKTOP HEADER -->
 <div class="w-full fixed top-0 hidden items-start justify-center z-30 md:flex">
-  <header class="text-light body-font w-2/3 bg-dark mx-auto mt-4 backdrop-blur-lg px-4 py-4"
-    style="border: 5px solid #000; box-shadow: 10px 10px 0 0 #08b74f;">
-    <div class="neo-accent mb-3"></div>
+  <header class="text-light body-font w-2/3 bg-dark mx-auto mt-3 backdrop-blur-lg px-4 py-2 pixel-border">
     <div class="container mx-auto flex p-2 items-center justify-between">
       <nav class="flex-1 flex justify-start items-center gap-6">
         <a href="{% url 'leaderboard' %}"
-          class="retro-text text-light hover:text-primary font-bold crt-glow-sm">Leaderboard</a>
-        <a href="{% url 'help' %}" class="retro-text text-light hover:text-primary font-bold crt-glow-sm">Help</a>
-        <a href="{% url 'about' %}" class="retro-text text-light hover:text-primary font-bold crt-glow-sm">About</a>
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">Leaderboard</a>
+        <a href="{% url 'help' %}"
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">Help</a>
+        <a href="{% url 'about' %}"
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">About</a>
       </nav>
       <div class="flex-none flex justify-center">
         <a href="{% url 'index' %}">
@@ -60,17 +60,16 @@
       </div>
       <div class="flex-1 flex justify-end items-center gap-4">
         <a href="{% url 'account_login' %}">
-          <span class="retro-btn px-6 py-2 bg-light text-dark">
+          <span class="retro-btn px-6 py-2 bg-light border-light text-dark">
             Login
           </span>
         </a>
         <a href="{% url 'account_signup' %}">
-          <span class="retro-btn px-6 py-2 bg-primary text-dark">
+          <span class="retro-btn px-6 py-2 bg-primary border-primary text-dark">
             Signup
           </span>
         </a>
       </div>
     </div>
-    <div class="neo-accent-amber mt-3"></div>
   </header>
 </div>

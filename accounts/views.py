@@ -1,9 +1,6 @@
 import json
 import logging
 from django.http import HttpResponse
-import json
-import logging
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from accounts.models import Profile, contact_form
@@ -81,19 +78,22 @@ def profile(request):
             'rank': rank,
         })
 
-
 @login_required(login_url='account_login')
 @not_banned
 def edit_profile(request):
-    user = request.user
-    profile = Profile.objects.get(user=user)
-    return render(
-        request,
-        'edit_profile.html',
-        {
-            'user': user,
-            'profile': profile,
-        })
+    try:
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        return render(
+            request,
+            'edit_profile.html',
+            {
+                'user': user,
+                'profile': profile,
+            })
+    except Exception as e:
+        logger.error(f"Error in edit_profile: {e}")
+        return HttpResponse(f"Error loading edit profile: {str(e)}", status=500)
 
 
 @login_required(login_url='account_login')

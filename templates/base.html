@@ -124,9 +124,9 @@
       z-index: -1;
     }
 
-    /* === RETRO + NEOBRUTALISM FUSION === */
+    /* === PURE 8-BIT RETRO STYLE === */
 
-    /* Scanlines overlay effect (retro) */
+    /* Scanlines overlay effect (subtle vintage CRT) */
     .scanlines::before {
       content: "";
       position: fixed;
@@ -135,62 +135,100 @@
       right: 0;
       bottom: 0;
       background: repeating-linear-gradient(0deg,
-          rgba(0, 0, 0, 0.1),
-          rgba(0, 0, 0, 0.1) 1px,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05) 1px,
           transparent 1px,
           transparent 2px);
       pointer-events: none;
       z-index: 9999;
     }
 
-    /* NEOBRUTALISM: Thick borders + hard shadows */
+    /* Pixel borders - soft retro style */
     .pixel-border {
-      border: 5px solid #000;
-      box-shadow: 8px 8px 0 0 #08b74f;
+      border: 3px solid #08b74f;
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 4px 0 0 rgba(8, 183, 79, 0.4),
+        0 0 15px rgba(8, 183, 79, 0.15);
       image-rendering: pixelated;
     }
 
     .pixel-border-amber {
-      border: 5px solid #000;
-      box-shadow: 8px 8px 0 0 #fec84b;
+      border: 3px solid #fec84b;
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 4px 0 0 rgba(254, 200, 75, 0.4),
+        0 0 15px rgba(254, 200, 75, 0.15);
     }
+
+    /* Retro dot pattern background */
+    .retro-dots {
+      background-image:
+        radial-gradient(circle, rgba(221, 207, 181, 0.08) 1px, transparent 1px),
+        radial-gradient(circle, rgba(8, 183, 79, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px, 40px 40px;
+      background-position: 0 0, 10px 10px;
+    }
+
 
     .pixel-border-light {
-      border: 5px solid #000;
-      box-shadow: 8px 8px 0 0 #ddcfb5;
+      border: 3px solid #ddcfb5;
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+        0 4px 0 0 rgba(221, 207, 181, 0.3);
     }
 
-    /* Neobrutalist card with retro pixel aesthetic */
-    .neo-card {
-      border: 5px solid #000;
-      background: #2d1d0e;
-      box-shadow: 10px 10px 0 0 #08b74f;
-      transition: all 0.1s ease;
+    /* Retro card with vintage game aesthetic */
+    .retro-card {
+      border: 3px solid #08b74f;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 0 rgba(8, 183, 79, 0.5),
+        0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
     }
 
-    .neo-card:hover {
-      transform: translate(4px, 4px);
-      box-shadow: 6px 6px 0 0 #08b74f;
+    .retro-card:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 0 rgba(8, 183, 79, 0.6),
+        0 8px 25px rgba(8, 183, 79, 0.2);
     }
 
-    .neo-card-amber {
-      box-shadow: 10px 10px 0 0 #fec84b;
+    .retro-card-amber {
+      border-color: #fec84b;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 0 rgba(254, 200, 75, 0.5),
+        0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .neo-card-amber:hover {
-      box-shadow: 6px 6px 0 0 #fec84b;
+    .retro-card-amber:hover {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 0 rgba(254, 200, 75, 0.6),
+        0 8px 25px rgba(254, 200, 75, 0.2);
     }
 
-    /* CRT glow text effect (retro) */
+    /* CRT glow text effect */
     .crt-glow {
       text-shadow:
         0 0 5px currentColor,
         0 0 10px currentColor,
-        0 0 20px currentColor;
+        0 0 20px currentColor,
+        0 2px 0 rgba(0, 0, 0, 0.5);
     }
 
     .crt-glow-sm {
-      text-shadow: 0 0 5px currentColor;
+      text-shadow:
+        0 0 5px currentColor,
+        0 1px 0 rgba(0, 0, 0, 0.3);
     }
 
     /* Pixelated image rendering */
@@ -219,7 +257,7 @@
       }
     }
 
-    /* Screen flicker effect (subtle) */
+    /* Screen flicker effect (very subtle) */
     @keyframes flicker {
 
       0%,
@@ -227,66 +265,84 @@
         opacity: 1;
       }
 
-      92% {
-        opacity: 0.95;
+      93% {
+        opacity: 0.97;
       }
 
-      94% {
+      95% {
         opacity: 1;
       }
 
-      97% {
-        opacity: 0.9;
+      98% {
+        opacity: 0.98;
       }
     }
 
     .screen-flicker {
-      animation: flicker 3s infinite;
+      animation: flicker 4s infinite;
     }
 
-    /* NEOBRUTALIST BUTTON - Retro pixel font + hard shadows */
+    /* Retro button style - like classic game buttons */
     .retro-btn {
       font-family: 'Press Start 2P', cursive;
       font-size: 0.65rem;
-      border: 4px solid #000;
-      box-shadow: 6px 6px 0 0 #000;
-      transition: all 0.1s ease;
+      border: 3px solid;
+      border-radius: 4px;
+      box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 4px 0 rgba(0, 0, 0, 0.25),
+        0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.15s ease;
       text-transform: uppercase;
       letter-spacing: 1px;
       position: relative;
     }
 
     .retro-btn:hover {
-      transform: translate(3px, 3px);
-      box-shadow: 3px 3px 0 0 #000;
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 5px 0 rgba(0, 0, 0, 0.3),
+        0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
     .retro-btn:active {
-      transform: translate(6px, 6px);
-      box-shadow: none;
+      transform: translateY(2px);
+      box-shadow:
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 2px 3px rgba(0, 0, 0, 0.3),
+        0 2px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /* 8-bit card style with NEOBRUTALISM */
+    /* Pixel card style */
     .pixel-card {
-      border: 5px solid #000;
-      background: #2d1d0e;
-      box-shadow: 8px 8px 0 0 #08b74f;
-      transition: all 0.15s ease;
+      border: 3px solid #08b74f;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 0 rgba(8, 183, 79, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
     }
 
     .pixel-card:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 6px 6px 0 0 #08b74f;
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 0 rgba(8, 183, 79, 0.5),
+        0 8px 25px rgba(8, 183, 79, 0.2);
     }
 
-    /* Retro heading with bold outline (neobrutalism) */
+    /* Retro heading with pixel shadow */
     .retro-heading {
       font-family: 'Press Start 2P', cursive;
       text-shadow:
-        4px 4px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000;
+        2px 2px 0 rgba(0, 0, 0, 0.5),
+        0 0 10px currentColor;
+      filter: drop-shadow(0 0 8px currentColor);
     }
 
     /* VT323 body text */
@@ -296,25 +352,178 @@
       letter-spacing: 0.5px;
     }
 
-    /* Neobrutalist container */
-    .neo-container {
-      border: 5px solid #000;
+    /* Retro container with subtle glow */
+    .retro-container {
+      border: 3px solid #fec84b;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 0 rgba(254, 200, 75, 0.4),
+        0 8px 30px rgba(254, 200, 75, 0.15);
+    }
+
+    /* Pixel accent bar */
+    .pixel-accent {
+      height: 4px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          #08b74f 10%,
+          #08b74f 90%,
+          transparent 100%);
+      box-shadow: 0 0 10px rgba(8, 183, 79, 0.5);
+    }
+
+    .pixel-accent-amber {
+      background: linear-gradient(90deg,
+          transparent 0%,
+          #fec84b 10%,
+          #fec84b 90%,
+          transparent 100%);
+      box-shadow: 0 0 10px rgba(254, 200, 75, 0.5);
+    }
+
+    /* Input fields with retro style */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      border: 2px solid rgba(221, 207, 181, 0.2) !important;
+      border-radius: 4px !important;
+      background: rgba(0, 0, 0, 0.3) !important;
+      color: #ddcfb5 !important;
+      font-family: 'VT323', monospace !important;
+      font-size: 1.15rem !important;
+      padding: 0.75rem !important;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none !important;
+      border-color: rgba(8, 183, 79, 0.6) !important;
+      background: rgba(0, 0, 0, 0.4) !important;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 12px rgba(8, 183, 79, 0.25) !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(221, 207, 181, 0.3) !important;
+    }
+
+    /* Focus visible for accessibility */
+    *:focus-visible {
+      outline: 3px solid #fec84b;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Toast/notification styling */
+    #custom_toast {
+      border: 3px solid #08b74f;
+      border-radius: 6px;
+      box-shadow:
+        0 4px 0 rgba(8, 183, 79, 0.4),
+        0 8px 30px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+    }
+
+    /* Mobile menu transitions */
+    #mobile-menu {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Scrollbar styling - retro game style */
+    ::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
+
+    ::-webkit-scrollbar-track {
       background: #2d1d0e;
-      box-shadow: 12px 12px 0 0 #fec84b;
+      border: 2px solid #08b74f;
+      border-radius: 2px;
     }
 
-    /* Bold accent bar */
-    .neo-accent {
-      height: 6px;
-      background: #08b74f;
-      box-shadow: 0 4px 0 0 #000;
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #0ac955 0%, #08b74f 100%);
+      border: 2px solid #08b74f;
+      border-radius: 2px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
-    .neo-accent-amber {
-      background: #fec84b;
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #0ee05f 0%, #0ac955 100%);
     }
 
-    /* === END RETRO + NEOBRUTALISM === */
+    /* Selection styling */
+    ::selection {
+      background: rgba(8, 183, 79, 0.8);
+      color: #ddcfb5;
+      text-shadow: 0 0 5px rgba(8, 183, 79, 1);
+    }
+
+    ::-moz-selection {
+      background: rgba(8, 183, 79, 0.8);
+      color: #ddcfb5;
+    }
+
+    /* Disabled state */
+    button:disabled,
+    input:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      filter: grayscale(1);
+    }
+
+    /* Loading state */
+    .loading {
+      position: relative;
+      pointer-events: none;
+    }
+
+    .loading::after {
+      content: "...";
+      font-family: 'Press Start 2P', cursive;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* Glitch effect on hover */
+    @keyframes glitch {
+
+      0%,
+      100% {
+        transform: translate(0);
+      }
+
+      20% {
+        transform: translate(-1px, 1px);
+      }
+
+      40% {
+        transform: translate(-1px, -1px);
+      }
+
+      60% {
+        transform: translate(1px, 1px);
+      }
+
+      80% {
+        transform: translate(1px, -1px);
+      }
+    }
+
+    .glitch:hover {
+      animation: glitch 0.3s ease-in-out;
+    }
+
+    /* === END PURE 8-BIT RETRO === */
 
     .install {
       display: none;

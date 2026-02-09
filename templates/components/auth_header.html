@@ -1,8 +1,7 @@
 {% load static %}
 {% load profile_tags %}
 <nav
-  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-dark backdrop-blur-md md:hidden m-3"
-  style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #08b74f;">
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-dark backdrop-blur-md md:hidden m-3 pixel-border">
   <a href="{% url 'index' %}">
     <img src="{% static 'logo_banner.svg' %}" alt="Re-Decrypt Logo" width="auto" height="auto" class="h-6 pixelated" />
   </a>
@@ -12,12 +11,12 @@
   </button>
 </nav>
 <div id="mobile-menu"
-  class="fixed inset-x-0 top-[76px] bg-dark transform -translate-y-[150%] transition-transform duration-500 ease-in-out backdrop-blur-md z-40 md:hidden m-4"
-  style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #fec84b;">
+  class="fixed inset-x-0 top-[76px] bg-dark transform -translate-y-[150%] transition-transform duration-500 ease-in-out backdrop-blur-md z-40 md:hidden m-4 pixel-border-amber">
   <div class="flex flex-col p-6">
-    <div class="neo-accent mb-4"></div>
+    <div class="pixel-accent mb-4"></div>
     <nav class="flex flex-col space-y-3">
-      <a href="{% url 'play' %}" class="retro-btn text-dark bg-primary py-3 text-left px-4 flex items-center gap-x-3">
+      <a href="{% url 'play' %}"
+        class="retro-btn text-dark bg-primary border-primary py-3 text-left px-4 flex items-center gap-x-3">
         <i class="ph-fill ph-play"></i>
         Play
       </a>
@@ -37,13 +36,15 @@
         About
       </a>
     </nav>
-    <div class="neo-accent-amber my-4"></div>
-    <div class="bg-dark px-4 pt-5 mt-3" style="border: 4px solid #08b74f;">
+    <div class="pixel-accent-amber my-4"></div>
+    <div class="bg-dark px-4 pt-5 mt-3 border-3 border-primary rounded"
+      style="border: 3px solid #08b74f; border-radius: 4px;">
       <div class="flex items-center gap-x-3 mx-2">
-        <img src="{% avatar user %}" alt="avatar" style="border: 3px solid #000; box-shadow: 3px 3px 0 0 #08b74f;"
-          class="w-10 h-10 pixelated" width="auto" height="auto" />
+        <img src="{% avatar user %}" alt="avatar" class="w-10 h-10 pixel-border pixelated" width="auto" height="auto" />
         <div class="flex flex-col justify-center items-start">
+          {% if user.username %}
           <span class="text-primary font-pixel text-xs crt-glow-sm">{{ user.username }}</span>
+          {% endif %}
           {% if user.profile.name %}
           <span class="text-light text-xs retro-text">{{ user.profile.name }}</span>
           {% endif %}
@@ -51,19 +52,21 @@
       </div>
       <div class="flex flex-col gap-y-3 py-5">
         {% if user.is_staff %}
-        <a href="/honeypot/" class="retro-btn text-start bg-light text-dark py-2 px-4 flex items-center gap-x-3">
+        <a href="/honeypot/"
+          class="retro-btn text-start bg-light border-light text-dark py-2 px-4 flex items-center gap-x-3">
           <i class="ph-fill ph-gear"></i>
           Admin Panel
         </a>
         {% endif %}
         <a href="{% url 'profile' %}"
-          class="retro-btn text-start bg-light text-dark py-2 px-4 flex items-center gap-x-3">
+          class="retro-btn text-start bg-light border-light text-dark py-2 px-4 flex items-center gap-x-3">
           <i class="ph-fill ph-user"></i>
           Profile
         </a>
         <form action="{% url 'account_logout' %}" method="post" class="contents">
           {% csrf_token %}
-          <button type="submit" class="retro-btn text-start bg-secondary text-dark py-2 px-4 flex items-center gap-x-3">
+          <button type="submit"
+            class="retro-btn text-start bg-secondary border-secondary text-dark py-2 px-4 flex items-center gap-x-3">
             <i class="ph-fill ph-sign-out"></i>
             Sign Out
           </button>
@@ -75,15 +78,15 @@
 
 <!-- DESKTOP HEADER -->
 <div class="w-full fixed top-0 hidden items-start justify-center z-30 md:flex">
-  <header class="relative text-light body-font w-2/3 bg-dark mx-auto mt-4 backdrop-blur-lg px-4 py-4"
-    style="border: 5px solid #000; box-shadow: 10px 10px 0 0 #08b74f;">
-    <div class="neo-accent mb-3"></div>
+  <header class="relative text-light body-font w-2/3 bg-dark mx-auto mt-3 backdrop-blur-lg px-4 py-2 pixel-border">
     <div class="container mx-auto flex items-center justify-between">
       <nav class="flex-1 flex justify-start items-center gap-6">
         <a href="{% url 'leaderboard' %}"
-          class="retro-text text-light hover:text-primary font-bold crt-glow-sm">Leaderboard</a>
-        <a href="{% url 'help' %}" class="retro-text text-light hover:text-primary font-bold crt-glow-sm">Help</a>
-        <a href="{% url 'about' %}" class="retro-text text-light hover:text-primary font-bold crt-glow-sm">About</a>
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">Leaderboard</a>
+        <a href="{% url 'help' %}"
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">Help</a>
+        <a href="{% url 'about' %}"
+          class="retro-text text-light hover:text-primary font-bold crt-glow-sm transition-colors">About</a>
       </nav>
       <div class="flex-none flex justify-center">
         <a href="{% url 'index' %}">
@@ -93,7 +96,8 @@
       </div>
       <div class="flex-1 flex justify-end items-center flex-row gap-x-4">
         <a href="{% url 'play' %}">
-          <span class="retro-btn px-6 py-2 bg-primary text-dark items-center justify-center flex gap-x-3">
+          <span
+            class="retro-btn px-6 py-2 bg-primary border-primary text-dark items-center justify-center flex gap-x-3">
             <i class="ph-fill ph-play"></i>
             Play
           </span>
@@ -101,25 +105,29 @@
         <div class="group relative h-full flex items-center" x-data="{ open: false }">
           <button class="text-light hover:opacity-80 transition-opacity h-full px-1 flex items-center"
             @click="open = !open" @click.outside="open = false">
-            <img src="{% avatar user %}" alt="avatar" style="border: 3px solid #000; box-shadow: 3px 3px 0 0 #08b74f;"
-              class="w-10 h-10 pixelated" width="auto" height="auto" />
+            <img src="{% avatar user %}" alt="avatar" class="w-10 h-10 pixel-border pixelated" width="auto"
+              height="auto" />
           </button>
           {% if user.is_staff %}
-          <nav tabindex="0" class="bg-dark invisible w-64 absolute -right-3 top-full mt-3 transition-all opacity-0"
-            style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #fec84b;"
+          <nav tabindex="0"
+            class="bg-dark invisible w-64 absolute -right-3 top-full mt-3 transition-all opacity-0 pixel-border-amber"
             :class="{ 'invisible opacity-0 translate-y-0': !open, 'visible opacity-100 translate-y-5': open }">
-            <div class="neo-accent-amber"></div>
+            <div class="pixel-accent-amber"></div>
             <div class="px-2 pt-3">
               <a href="{% url 'profile' %}"
-                class="flex items-center gap-3 group/profile hover:bg-primary/20 p-2 transition-all duration-200">
-                <img src="{% avatar user %}" alt="avatar"
-                  style="border: 3px solid #000; box-shadow: 2px 2px 0 0 #08b74f;" class="w-10 h-10 pixelated"
-                  width="auto" height="auto" />
+                class="flex items-center gap-3 group/profile hover:bg-primary/20 p-2 transition-all duration-200 rounded">
+                <img src="{% avatar user %}" alt="avatar" class="w-10 h-10 pixel-border pixelated" width="auto"
+                  height="auto" />
                 <div class="flex flex-col">
+                  {% if user.username %}
                   <span
-                    class="text-light font-pixel text-xs group-hover/profile:text-primary transition-colors crt-glow-sm">{{
-                    user.username }}</span>
+                    class="text-light font-pixel text-xs group-hover/profile:text-primary transition-colors crt-glow-sm">
+                    {{user.username }}
+                  </span>
+                  {% endif %}
+
                   <span class="text-light/60 text-sm retro-text">View profile</span>
+
                 </div>
               </a>
             </div>
@@ -128,7 +136,7 @@
                 {% if user.is_staff %}
                 <li>
                   <a href="/honeypot/"
-                    class="flex items-center gap-3 p-2 retro-text text-light hover:bg-secondary/20 transition-all duration-200">
+                    class="flex items-center gap-3 p-2 retro-text text-light hover:bg-secondary/20 transition-all duration-200 rounded">
                     <span class="ph-fill ph-gear text-secondary text-xl"></span>
                     <span class="font-medium">Admin Panel</span>
                   </a>
@@ -137,7 +145,7 @@
                 {% if user.is_superuser %}
                 <li>
                   <a href="{% url 'update_rank' %}"
-                    class="flex items-center gap-3 p-2 retro-text text-light hover:bg-primary/20 transition-all duration-200">
+                    class="flex items-center gap-3 p-2 retro-text text-light hover:bg-primary/20 transition-all duration-200 rounded">
                     <span class="ph-fill ph-clock-clockwise text-xl text-primary"></span>
                     <span class="font-medium">Update Ranks</span>
                   </a>
@@ -149,7 +157,7 @@
               <form action="{% url 'account_logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit"
-                  class="w-full flex items-center gap-3 p-2 retro-text text-secondary hover:bg-secondary/10 transition-all duration-200">
+                  class="w-full flex items-center gap-3 p-2 retro-text text-secondary hover:bg-secondary/10 transition-all duration-200 rounded">
                   <span class="ph-fill ph-sign-out text-xl"></span>
                   <span class="font-medium">Sign Out</span>
                 </button>
@@ -157,20 +165,22 @@
             </div>
           </nav>
           {% else %}
-          <nav tabindex="0" class="bg-dark invisible w-64 absolute -right-3 top-full mt-3 transition-all opacity-0"
-            style="border: 5px solid #000; box-shadow: 8px 8px 0 0 #fec84b;"
+          <nav tabindex="0"
+            class="bg-dark invisible w-64 absolute -right-3 top-full mt-3 transition-all opacity-0 pixel-border-amber"
             :class="{ 'invisible opacity-0 translate-y-0': !open, 'visible opacity-100 translate-y-5': open }">
-            <div class="neo-accent-amber"></div>
+            <div class="pixel-accent-amber"></div>
             <div class="px-2 pt-3">
               <a href="{% url 'profile' %}"
-                class="flex items-center gap-3 group/profile hover:bg-primary/10 p-2 transition-all duration-200">
-                <img src="{% avatar user %}" alt="avatar"
-                  style="border: 3px solid #000; box-shadow: 2px 2px 0 0 #08b74f;" class="w-10 h-10 pixelated"
-                  width="auto" height="auto" />
+                class="flex items-center gap-3 group/profile hover:bg-primary/10 p-2 transition-all duration-200 rounded">
+                <img src="{% avatar user %}" alt="avatar" class="w-10 h-10 pixel-border pixelated" width="auto"
+                  height="auto" />
                 <div class="flex flex-col">
+                  {% if user.username %}
                   <span
-                    class="text-light font-pixel text-xs group-hover/profile:text-primary transition-colors crt-glow-sm">{{
-                    user.username }}</span>
+                    class="text-light font-pixel text-xs group-hover/profile:text-primary transition-colors crt-glow-sm">
+                    {{ user.username }}
+                  </span>
+                  {% endif %}
                   <span class="text-light/60 text-sm retro-text">View profile</span>
                 </div>
               </a>
@@ -179,7 +189,7 @@
               <form action="{% url 'account_logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit"
-                  class="w-full flex items-center gap-3 p-2 retro-text text-secondary hover:bg-secondary/10 transition-all duration-200">
+                  class="w-full flex items-center gap-3 p-2 retro-text text-secondary hover:bg-secondary/10 transition-all duration-200 rounded">
                   <span class="ph-fill ph-sign-out text-xl"></span>
                   <span class="font-medium">Sign Out</span>
                 </button>
@@ -190,6 +200,5 @@
         </div>
       </div>
     </div>
-    <div class="neo-accent-amber mt-3"></div>
   </header>
 </div>
