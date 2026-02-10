@@ -567,35 +567,782 @@
       animation: blink 1s step-end infinite;
     }
 
-    /* Glitch effect on hover */
-    @keyframes glitch {
+    /* Enhanced Glitch effect - MORE INTENSE */
+    .glitch:hover {
+      animation: glitch 0.2s ease-in-out;
+    }
+    
+    /* More frequent glitch trigger */
+    .glitch-hover {
+      position: relative;
+    }
+    
+    .glitch-hover::before,
+    .glitch-hover::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    
+    .glitch-hover:hover::before {
+      animation: glitchRGB 0.2s ease-in-out;
+      color: #ff0000;
+      opacity: 0.8;
+      z-index: -1;
+    }
+    
+    .glitch-hover:hover::after {
+      animation: glitchRGB 0.2s ease-in-out reverse;
+      color: #00ffff;
+      opacity: 0.8;
+      z-index: -2;
+    }
+    
+    @keyframes glitchRGB {
+      0% { transform: translate(0); }
+      20% { transform: translate(-3px, 3px); }
+      40% { transform: translate(-3px, -3px); }
+      60% { transform: translate(3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+      100% { transform: translate(0); }
+    }
 
-      0%,
+    /* === ARCADE EFFECTS ANIMATIONS === */
+    
+    /* Ripple effect for buttons */
+    @keyframes rippleEffect {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+    
+    /* Screen shake for errors */
+    @keyframes screenShake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .screen-shake {
+      animation: screenShake 0.5s ease-in-out;
+    }
+    
+    /* Flash effects */
+    @keyframes flashSuccess {
+      0%, 100% { background: transparent; }
+      50% { background: rgba(8, 183, 79, 0.3); }
+    }
+    
+    @keyframes flashError {
+      0%, 100% { background: transparent; }
+      50% { background: rgba(220, 38, 38, 0.3); }
+    }
+    
+    .screen-flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 99999;
+    }
+    
+    .flash-success {
+      animation: flashSuccess 0.5s ease-out;
+    }
+    
+    .flash-error {
+      animation: flashError 0.5s ease-out;
+    }
+    
+    /* Glitch effect */
+    @keyframes glitchEffect {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    
+    .glitch-effect {
+      animation: glitchEffect 0.3s ease-in-out;
+    }
+    
+    /* Sound wave visual */
+    @keyframes soundWave {
+      0% {
+        transform: scale(0.5);
+        opacity: 1;
+      }
       100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+    
+    /* Loading bar animation */
+    @keyframes loadingProgress {
+      0% { width: 0%; }
+      50% { width: 100%; }
+      100% { width: 0%; left: 100%; }
+    }
+    
+    @keyframes loadingDots {
+      0%, 20% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    
+    .loader-dots span {
+      animation: loadingDots 1.4s infinite;
+      opacity: 0;
+    }
+    
+    .loader-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .loader-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    /* Attract mode animations */
+    @keyframes attractFloat {
+      0%, 100% { 
+        transform: translateY(0);
+        text-shadow: 0 0 10px currentColor;
+      }
+      50% { 
+        transform: translateY(-15px);
+        text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+      }
+    }
+    
+    .attract-float {
+      animation: attractFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes pressStartBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    
+    .press-start-blink {
+      animation: pressStartBlink 1s ease-in-out infinite;
+    }
+    
+    /* Score counter flash */
+    @keyframes scoreUpdated {
+      0%, 100% { transform: scale(1); }
+      50% { 
+        transform: scale(1.1);
+        text-shadow: 0 0 20px #08b74f, 0 0 40px #08b74f;
+      }
+    }
+    
+    .score-updated {
+      animation: scoreUpdated 0.3s ease-out;
+    }
+    
+    /* Text glow animation */
+    @keyframes textGlowPulse {
+      0%, 100% { 
+        text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+      }
+      50% { 
+        text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+      }
+    }
+    
+    .text-glow-animate {
+      animation: textGlowPulse 2s ease-in-out infinite;
+    }
+    
+    /* Enhanced button press - MORE DRAMATIC */
+    .retro-btn {
+      transition: all 0.08s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-style: preserve-3d;
+    }
+    
+    .retro-btn::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 2px;
+      box-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 16px rgba(255, 255, 255, 0.6),
+        0 0 24px rgba(255, 255, 255, 0.3);
+      transition: all 0.15s ease;
+    }
+    
+    .retro-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+    
+    .retro-btn:hover::after {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 24px rgba(255, 255, 255, 0.8),
+        0 0 36px rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Button click effects removed for instant response */
+    .retro-btn:active {
+      transform: none;
+    }
+    
+    .retro-btn:active::after {
+      opacity: 1;
+    }
+    
+    /* Button spring back animation - DISABLED for faster redirects */
+    /* .retro-btn:not(:active) {
+      animation: buttonSpring 0.3s ease-out;
+    } */
+    
+    /* Neon flicker for primary buttons - MORE FREQUENT */
+    @keyframes neonFlicker {
+      0%, 100% { opacity: 1; filter: brightness(1); }
+      41% { opacity: 1; filter: brightness(1); }
+      42% { opacity: 0.7; filter: brightness(1.2); }
+      43% { opacity: 1; filter: brightness(1); }
+      45% { opacity: 0.85; filter: brightness(1.1); }
+      46% { opacity: 1; filter: brightness(1); }
+      91% { opacity: 1; filter: brightness(1); }
+      92% { opacity: 0.75; filter: brightness(1.15); }
+      93% { opacity: 1; filter: brightness(1); }
+    }
+    
+    .retro-btn.bg-primary {
+      animation: neonFlicker 2.5s infinite;
+    }
+    
+    /* Enhanced CRT Scanlines - SUBTLE VERSION */
+    .scanlines-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 9997;
+      overflow: hidden;
+    }
+    
+    /* Layer 1: Subtle static scanlines - REDUCED OPACITY */
+    .scanlines-static {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.08),
+        rgba(0, 0, 0, 0.08) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      opacity: 0.3;
+    }
+    
+    /* Layer 2: Moving bright scanline - MORE SUBTLE */
+    @keyframes movingScanline {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+    
+    .moving-scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(8, 183, 79, 0.15) 30%,
+        rgba(8, 183, 79, 0.25) 50%,
+        rgba(8, 183, 79, 0.15) 70%,
+        transparent 100%
+      );
+      box-shadow: 
+        0 0 8px rgba(8, 183, 79, 0.2),
+        0 0 15px rgba(8, 183, 79, 0.1);
+      animation: movingScanline 6s linear infinite;
+    }
+    
+    /* Layer 3: Random interference bars - REDUCED */
+    @keyframes interferenceBar {
+      0%, 95%, 100% { 
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      2% { 
+        transform: translateY(30vh);
+        opacity: 0.2;
+      }
+      5% { 
+        transform: translateY(60vh);
+        opacity: 0.15;
+      }
+      8% { 
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+    
+    .interference-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      animation: interferenceBar 12s ease-in-out infinite;
+      animation-delay: calc(var(--delay, 0) * 4s);
+    }
+    
+    .interference-bar:nth-child(2) { --delay: 1; }
+    .interference-bar:nth-child(3) { --delay: 2; }
+    
+    /* Layer 4: Very subtle screen flicker - SLOWER */
+    @keyframes screenFlicker {
+      0%, 100% { opacity: 1; }
+      5% { opacity: 0.995; }
+      10% { opacity: 1; }
+      85% { opacity: 1; }
+      90% { opacity: 0.995; }
+      95% { opacity: 1; }
+    }
+    
+    body {
+      animation: screenFlicker 0.3s infinite;
+    }
+    
+    /* Phosphor glow effect - REDUCED */
+    .phosphor-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 70%,
+        rgba(8, 183, 79, 0.02) 80%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Card breathing animation */
+    @keyframes cardBreathe {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 4px 0 rgba(8, 183, 79, 0.5),
+          0 6px 20px rgba(0, 0, 0, 0.5);
+      }
+      50% { 
+        transform: scale(1.005);
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 4px 0 rgba(8, 183, 79, 0.6),
+          0 8px 25px rgba(8, 183, 79, 0.2),
+          0 0 30px rgba(8, 183, 79, 0.1);
+      }
+    }
+
+    .retro-card {
+      animation: cardBreathe 4s ease-in-out infinite;
+    }
+
+    /* Neon pulse on borders */
+    @keyframes borderPulse {
+      0%, 100% { 
+        border-color: #08b74f;
+        box-shadow: 
+          inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+          0 4px 0 0 rgba(8, 183, 79, 0.4),
+          0 0 15px rgba(8, 183, 79, 0.15);
+      }
+      50% { 
+        border-color: #0ac955;
+        box-shadow: 
+          inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+          0 4px 0 0 rgba(8, 183, 79, 0.5),
+          0 0 25px rgba(8, 183, 79, 0.3),
+          0 0 40px rgba(8, 183, 79, 0.1);
+      }
+    }
+
+    .pixel-border {
+      animation: borderPulse 3s ease-in-out infinite;
+    }
+    
+    /* Page transition glitch */
+    @keyframes pageGlitch {
+      0% { 
+        clip-path: inset(40% 0 61% 0);
+        transform: translate(-2px, 2px);
+      }
+      20% { 
+        clip-path: inset(92% 0 1% 0);
+        transform: translate(2px, -2px);
+      }
+      40% { 
+        clip-path: inset(43% 0 1% 0);
+        transform: translate(-2px, 2px);
+      }
+      60% { 
+        clip-path: inset(25% 0 58% 0);
+        transform: translate(2px, -2px);
+      }
+      80% { 
+        clip-path: inset(54% 0 7% 0);
+        transform: translate(-2px, 2px);
+      }
+      100% { 
+        clip-path: inset(58% 0 43% 0);
         transform: translate(0);
       }
-
-      20% {
-        transform: translate(-1px, 1px);
+    }
+    
+    .page-transition {
+      animation: pageGlitch 0.3s ease-out;
+    }
+    
+    /* Cursor blink for typewriter */
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .cursor-blink::after {
+      content: '█';
+      animation: cursorBlink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    
+    /* Accessibility: Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-
-      40% {
-        transform: translate(-1px, -1px);
+      
+      .retro-btn:hover,
+      .retro-btn:active {
+        transform: none !important;
       }
-
-      60% {
-        transform: translate(1px, 1px);
-      }
-
-      80% {
-        transform: translate(1px, -1px);
+      
+      .screen-shake,
+      .glitch-effect,
+      .attract-float,
+      .press-start-blink {
+        animation: none !important;
       }
     }
 
-    .glitch:hover {
-      animation: glitch 0.3s ease-in-out;
+    /* Auth page centering utility */
+    .auth-container {
+      min-height: calc(100vh - 6rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 10;
     }
 
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    @media (max-height: 700px) {
+      .auth-container {
+        align-items: flex-start;
+        padding-top: 2rem;
+      }
+    }
+
+    @media (min-height: 800px) {
+      .auth-container {
+        align-items: center;
+      }
+    }
+
+    /* Arcade Loader Styles */
+    .arcade-loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 17, 8, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+      font-family: 'Press Start 2P', cursive;
+    }
+    
+    .loader-container {
+      text-align: center;
+    }
+    
+    .loader-text {
+      font-size: 1.5rem;
+      color: #08b74f;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #08b74f;
+    }
+    
+    .loader-bar {
+      width: 300px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 3px solid #08b74f;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 auto 1rem;
+    }
+    
+    .loader-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #08b74f 0%, #0ac955 50%, #08b74f 100%);
+      box-shadow: 0 0 10px rgba(8, 183, 79, 0.8);
+      animation: loadingProgress 2s ease-in-out infinite;
+    }
+    
+    .loader-dots {
+      color: #fec84b;
+      font-size: 1.5rem;
+    }
+    
+    .loader-dots span {
+      animation: loadingDots 1.4s infinite;
+      opacity: 0;
+    }
+    
+    .loader-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .loader-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    /* === LANDING ANIMATION STYLES === */
+    
+    /* Boot Sequence Overlay */
+    .boot-sequence {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .boot-sequence.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .boot-sequence.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .boot-sequence.power-on {
+      animation: crtPowerOn 0.5s ease-out;
+    }
+    
+    @keyframes crtPowerOn {
+      0% { 
+        opacity: 0; 
+        background: #fff;
+        filter: brightness(3);
+      }
+      50% { 
+        opacity: 1; 
+        background: #fff;
+        filter: brightness(2);
+      }
+      100% { 
+        opacity: 1; 
+        background: #000;
+        filter: brightness(1);
+      }
+    }
+    
+    .boot-content {
+      text-align: left;
+      max-width: 600px;
+      padding: 2rem;
+    }
+    
+    .boot-text {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: #08b74f;
+      text-shadow: 0 0 10px rgba(8, 183, 79, 0.5);
+      min-height: 200px;
+    }
+    
+    .boot-cursor {
+      display: inline-block;
+      width: 12px;
+      height: 20px;
+      background: #08b74f;
+      margin-left: 4px;
+      animation: cursorBlink 0.8s step-end infinite;
+      box-shadow: 0 0 10px rgba(8, 183, 79, 0.8);
+    }
+    
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .boot-skip {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      color: #ddcfb5;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .boot-skip.visible {
+      opacity: 0.5;
+    }
+    
+    /* Landing Animation Elements - Fade In */
+    .landing-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .landing-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays */
+    .landing-animate[data-delay="1"] { transition-delay: 0.1s; }
+    .landing-animate[data-delay="2"] { transition-delay: 0.2s; }
+    .landing-animate[data-delay="3"] { transition-delay: 0.3s; }
+    .landing-animate[data-delay="4"] { transition-delay: 0.4s; }
+    .landing-animate[data-delay="5"] { transition-delay: 0.5s; }
+    .landing-animate[data-delay="6"] { transition-delay: 0.6s; }
+    
+    /* === SMOOTH SCROLL STYLES === */
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #08b74f, #0ac955);
+      box-shadow: 0 0 10px rgba(8, 183, 79, 0.5);
+      z-index: 10001;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      padding: 0;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+    }
+    
+    .back-to-top i {
+      font-size: 1.5rem;
+    }
+    
+    /* Reveal on Scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     /* === END PURE 8-BIT RETRO === */
 
     .install {
@@ -753,8 +1500,19 @@
   {% endblock head %}
 </head>
 
-<body class="font-Inter mt-24">
+<body class="font-Inter mt-24 {% if request.path == '/' or request.path == '/index/' %}home-page{% endif %}">
   <div id="toast_container" class="fixed bottom-0 right-0 flex w-full flex-col items-center p-4 space-y-2 z-50"></div>
+  
+  <!-- Enhanced CRT Scanlines Container -->
+  <div class="scanlines-container">
+    <div class="scanlines-static"></div>
+    <div class="moving-scanline"></div>
+    <div class="interference-bar"></div>
+    <div class="interference-bar"></div>
+    <div class="interference-bar"></div>
+    <div class="phosphor-glow"></div>
+  </div>
+  
   <!-- Retro texture overlay -->
   <div class="fixed inset-0 pointer-events-none z-0 opacity-30" 
        style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2308b74f\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
@@ -771,6 +1529,10 @@
     </center>
   </div>
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+  <!-- Arcade Effects JavaScript -->
+  <script src="{% static 'js/arcade-effects.js' %}"></script>
+  <script src="{% static 'js/landing-animation.js' %}"></script>
+  <script src="{% static 'js/smooth-scroll.js' %}"></script>
   {% block scripts %}
   {% endblock scripts %}
   <script>

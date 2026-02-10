@@ -170,7 +170,7 @@
         <div class="w-20 h-20 border-3 border-accent rounded bg-accent/10 flex items-center justify-center animate-fadeIn">
           <i class="ph-fill ph-trophy text-4xl text-accent crt-glow"></i>
         </div>
-        <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow animate-fadeIn" style="--delay: 1">Leaderboard</h1>
+        <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow animate-fadeIn glitch-hover" style="--delay: 1" data-text="Leaderboard">Leaderboard</h1>
         
         <!-- User Stats Card -->
         {% if rank != 'unauthorised' %}
@@ -207,7 +207,7 @@
               </div>
               <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
                 <div class="flex flex-col items-end">
-                  <span class="font-pixel text-lg text-primary">{{ user.profile.score }}</span>
+                  <span class="font-pixel text-lg text-primary score-number" data-value="{{ user.profile.score }}">0</span>
                   <span class="retro-text text-light/40 text-xs">points</span>
                 </div>
                 <div class="w-14 h-14 border-2 border-primary bg-primary/10 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -276,7 +276,7 @@
                   <!-- Score -->
                   <div class="flex items-center gap-6">
                     <div class="flex flex-col items-end">
-                      <div class="font-pixel text-base text-primary">{{ user.score }}</div>
+                      <div class="font-pixel text-base text-primary score-number" data-value="{{ user.score }}">0</div>
                       <div class="retro-text text-light/40 text-xs">points</div>
                     </div>
                   </div>

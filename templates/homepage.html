@@ -78,11 +78,11 @@ Home
 <div class="min-h-[80vh] flex items-center justify-center relative px-4">
   <div class="w-full max-w-5xl">
     <!-- FOSS Logo -->
-    <img src="{% static 'foss-bu-dark.png' %}" alt="FOSS BU Logo" class="py-6 w-2/3 md:w-1/4 h-auto mx-auto pixelated"
-      data-aos="fade-up" height="auto" width="auto">
+    <img src="{% static 'foss-bu-dark.png' %}" alt="FOSS BU Logo" class="py-6 w-2/3 md:w-1/4 h-auto mx-auto pixelated landing-animate"
+      data-delay="1" height="auto" width="auto">
 
     <!-- PRESENTS badge -->
-    <div class="flex justify-center mb-6" data-aos="fade-up" data-aos-delay="100">
+    <div class="flex justify-center mb-6 landing-animate" data-delay="2">
       <div class="pixel-border inline-block bg-primary px-8 py-3">
         <span class="font-pixel text-sm text-dark crt-glow-sm uppercase tracking-wider">▸ Presents ◂</span>
       </div>
@@ -90,27 +90,23 @@ Home
 
     <!-- Main Logo -->
     <img src="{% static 'logo_banner.svg' %}" alt="Re-Dcrypt Logo"
-      class="md:w-2/3 px-4 h-auto mx-auto py-8 glitch drop-shadow-lg" data-aos="fade-up" data-aos-delay="200"
+      class="md:w-2/3 px-4 h-auto mx-auto py-8 glitch drop-shadow-lg landing-animate" data-delay="3"
       height="auto" width="auto">
 
     <div class="mt-8 space-y-6">
-      <!-- Date with retro container -->
-      <div class="retro-container mx-auto max-w-2xl p-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="pixel-accent mb-4"></div>
-        <h1 class="text-3xl md:text-5xl font-pixel text-secondary crt-glow text-center">
-          11th & 12th January
-        </h1>
-        <div class="pixel-accent-amber mt-4"></div>
-      </div>
+      <!-- Date -->
+      <h1 class="text-3xl md:text-5xl font-pixel text-secondary crt-glow text-center scramble-text py-4 landing-animate" data-delay="4">
+        25th & 26th Feb 2026
+      </h1>
 
       <!-- Tagline -->
-      <p class="text-xl md:text-2xl retro-text text-light text-center py-4 crt-glow-sm max-w-2xl mx-auto">
+      <p class="text-xl md:text-2xl retro-text text-light text-center py-4 crt-glow-sm max-w-2xl mx-auto landing-animate" data-delay="5">
         <span class="text-primary font-bold">></span> Think you can crack the code? <span class="text-secondary">Prove
           it.</span> <span class="blink-cursor text-primary">_</span>
       </p>
 
       <!-- Action Buttons -->
-      <div class="button-container mt-8">
+      <div class="button-container mt-8 landing-animate" data-delay="6">
         <button class="retro-btn bg-light text-dark border-light hover:bg-secondary py-4 px-8 flex items-center gap-3"
           onclick="window.location.href='{% url 'about' %}'">
           <i class="ph-bold ph-info text-accent"></i>
@@ -134,7 +130,7 @@ Home
 </div>
 
 <!-- PRIZES SECTION -->
-<div data-aos="fade-up" data-aos-delay="400" class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4">
+<div class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4 reveal-on-scroll">
   <!-- Section Header with Pixel Accent -->
   <div class="mb-10">
     <span
@@ -221,7 +217,7 @@ Home
 </div>
 
 <!-- SPONSORS SECTION -->
-<div data-aos="fade-up" data-aos-delay="500" class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4">
+<div class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4 reveal-on-scroll">
   <!-- Section Header -->
   <div class="mb-10">
     <span
