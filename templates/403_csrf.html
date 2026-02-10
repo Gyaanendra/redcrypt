@@ -4,53 +4,58 @@
 {% block head_title %}403 - CSRF Verification Failed{% endblock head_title %}
 
 {% block content %}
-<div class="justify-center">
-  <div class="mx-auto p-5">
+<div class="justify-center px-4 pb-8 md:pt-4">
+  <div class="max-w-4xl mx-auto">
     <div class="flex flex-col items-center gap-8">
-      <div class="w-full max-w-2xl rounded-2xl overflow-hidden bg-transparent"
+      <!-- Error Image -->
+      <div class="w-full max-w-2xl border-2 border-red-500/50 rounded overflow-hidden bg-transparent"
            data-aos="fade-down"
            data-aos-duration="800">
         <img src="{% static 'error.png' %}"
              alt="CSRF Error"
-             class="w-1/2 h-auto transform transition-all duration-500 hover:scale-105 mx-auto"
+             class="w-1/2 h-auto mx-auto pixelated transition-all duration-500 hover:scale-105"
              width="auto"
              height="auto">
       </div>
 
-      <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-8 text-center w-full max-w-2xl transform transition duration-300 hover:scale-[1.02]"
+      <!-- Error Message -->
+      <div class="retro-card p-8 text-center w-full max-w-2xl"
            data-aos="fade-up"
            data-aos-delay="100"
            data-aos-duration="800">
-        <h1 class="text-6xl font-black text-neutral-100 mb-4">
-          <span class="text-rose-500">403</span> Error
+        <div class="pixel-accent mb-4"></div>
+        <h1 class="font-pixel text-2xl md:text-3xl text-red-400 crt-glow mb-4">
+          <span class="text-red-500">403</span> Error
         </h1>
-        <p class="text-xl text-neutral-300 mb-6">CSRF Verification Failed</p>
+        <p class="retro-text text-xl text-light/60 mb-6">CSRF Verification Failed</p>
 
-        <div class="grid grid-cols-1 gap-4 mb-8"
+        <div class="mb-8"
              data-aos="fade-up"
              data-aos-delay="200"
              data-aos-duration="800">
-          <div class="p-4 bg-neutral-800/30 rounded-xl">
-            <span class="ph-bold ph-lock text-rose-500 text-2xl mb-2"></span>
-            <p class="text-neutral-300">This error occurs for your security. Please try refreshing the page.</p>
+          <div class="border-2 border-red-500/30 rounded p-4 bg-dark/30">
+            <span class="ph-bold ph-lock text-red-500 text-2xl mb-2 block"></span>
+            <p class="retro-text text-light/60 text-sm">This error occurs for your security. Please try refreshing the page.</p>
           </div>
         </div>
 
-        <div class="button-container"
+        <div class="flex flex-col sm:flex-row justify-center gap-4"
              data-aos="fade-up"
              data-aos-delay="300"
              data-aos-duration="800">
           <button onclick="window.location.href='{% url 'index' %}'"
-                  class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-full transition-all duration-300 flex items-center gap-2">
-            <span class="ph-bold ph-house"></span>
+                  class="retro-btn bg-dark text-light border-light flex items-center justify-center gap-3 py-4 px-8">
+            <span class="ph-bold ph-house text-accent"></span>
             Back to Home
           </button>
           <button onclick="window.location.reload()"
-                  class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-2">
-            <span class="ph-bold ph-arrow-counter-clockwise"></span>
+                  class="retro-btn bg-primary text-dark border-primary hover:bg-secondary flex items-center justify-center gap-3 py-4 px-8">
+            <span class="ph-bold ph-arrow-counter-clockwise text-accent"></span>
             Try Again
           </button>
         </div>
+        
+        <div class="pixel-accent-amber mt-6"></div>
       </div>
     </div>
   </div>

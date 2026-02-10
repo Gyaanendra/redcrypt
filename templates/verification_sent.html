@@ -2,58 +2,45 @@
 {% load i18n %}
 {% load static %}
 {% block head_title %}Verification Email Sent{% endblock head_title %}
-{% block head %}
-  <style>
-.resend-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 
-.tooltip {
-  @apply invisible absolute;
-  width: max-content;
-}
-
-.has-tooltip:hover .tooltip {
-  @apply visible z-50;
-}
-  </style>
-{% endblock head %}
 {% block content %}
-  <div class="rounded lg:w-3/4 md:w-3/4 w-[98%] p-5 mt-24 bg-clip-padding mb-10">
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-8"
-         data-aos="fade-up"
-         data-aos-duration="800">
-      <div class="flex flex-col items-center">
-        <div class="w-16 h-16 rounded-full bg-green-600/20 flex items-center justify-center mb-6">
-          <span class="ph-fill ph-envelope text-4xl text-green-500"></span>
+  <div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md" data-aos="fade-up" data-aos-duration="800">
+      <div class="retro-card p-8">
+        <div class="text-center">
+          <div class="pixel-accent mb-6"></div>
+          <div class="flex justify-center mb-4">
+            <span class="ph-fill ph-envelope text-4xl text-accent crt-glow"></span>
+          </div>
+          <h1 class="font-pixel text-xl text-primary crt-glow mb-4">{% trans "Verify Your Email Address" %}</h1>
+          <p class="retro-text text-light/80 text-center mb-8">
+            {% blocktrans %}
+          We have sent an email to you for verification. Follow the link provided to finalize the signup process.
+          <br /><br />
+          If you do not see the verification email in your main inbox, check your spam folder.
+          <br /><br />
+          Please contact us if you do not receive the verification email within a few minutes.
+          {% endblocktrans %}
+          </p>
+          <form method="post"
+                action="{% url 'send_confirmation_email' %}"
+                class="w-full max-w-md">
+            {% csrf_token %}
+            {% if cooldown %}
+              <div class="mb-4 text-center retro-container p-4">
+                <p class="retro-text text-secondary">Please wait {{ remaining_time }} before requesting another email.</p>
+              </div>
+            {% endif %}
+            <button type="submit"
+                    class="retro-btn w-full bg-secondary text-dark border-secondary hover:bg-primary flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    {% if cooldown %}disabled{% endif %}>
+              <span class="ph-fill ph-paper-plane-tilt text-accent"></span>
+              Resend Verification Email
+            </button>
+          </form>
         </div>
-        <h1 class="text-3xl font-bold text-neutral-100 mb-4">{% trans "Verify Your Email Address" %}</h1>
-        <p class="text-neutral-400 text-center max-w-xl mb-8">
-          {% blocktrans %}
-        We have sent an email to you for verification. Follow the link provided to finalize the signup process.
-        <br /><br />
-        If you do not see the verification email in your main inbox, check your spam folder.
-        <br /><br />
-        Please contact us if you do not receive the verification email within a few minutes.
-        {% endblocktrans %}
-        </p>
-        <form method="post"
-              action="{% url 'send_confirmation_email' %}"
-              class="w-full max-w-md">
-          {% csrf_token %}
-          {% if cooldown %}
-            <div class="mb-4 text-center">
-              <p class="text-amber-500">Please wait {{ remaining_time }} before requesting another email.</p>
-            </div>
-          {% endif %}
-          <button type="submit"
-                  class="resend-btn w-full bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2"
-                  {% if cooldown %}disabled{% endif %}>
-            <span class="ph-fill ph-paper-plane-tilt"></span>
-            Resend Verification Email
-          </button>
-        </form>
+        
+        <div class="pixel-accent-amber mt-8 mb-4"></div>
       </div>
     </div>
   </div>

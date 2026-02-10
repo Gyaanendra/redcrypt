@@ -5,11 +5,11 @@ Sign Up
 {% endblock head_title %}
 {% block head %}
 <style>
-  /* Retro form container */
+  /* Retro form container with SOLID background */
   .retro-form-container {
     border: 3px solid #fec84b;
     border-radius: 6px;
-    background: linear-gradient(180deg, #2d1d0e 0%, #1f1407 100%);
+    background: #251809;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
       0 4px 0 rgba(254, 200, 75, 0.3),
@@ -88,7 +88,7 @@ Sign Up
       <div class="text-center mb-8">
         <div class="pixel-accent-amber mb-6"></div>
         <div class="flex justify-center mb-4">
-          <i class="ph-fill ph-hand-waving text-secondary text-4xl crt-glow"></i>
+          <i class="ph-fill ph-hand-waving text-accent text-4xl crt-glow"></i>
         </div>
         <h1 class="font-pixel text-2xl text-secondary crt-glow mb-2">Join Re-Dcrypt!</h1>
         <p class="retro-text text-light/60 text-sm">
@@ -137,7 +137,7 @@ Sign Up
               <div class="relative">
                 <input type="password" name="password1" id="id_password" required placeholder="Create a password"
                   class="w-full pr-12">
-                <i class="ph-fill ph-eye cursor-pointer text-lg text-light/40 absolute right-3 top-1/2 -translate-y-1/2 hover:text-secondary transition-colors"
+                <i class="ph-fill ph-eye cursor-pointer text-lg text-light/40 absolute right-3 top-1/2 -translate-y-1/2 hover:text-accent transition-colors"
                   id="togglePassword"></i>
               </div>
               <p class="text-light/40 text-xs retro-text mt-2">

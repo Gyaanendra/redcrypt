@@ -4,130 +4,137 @@
   Rules
 {% endblock head_title %}
 {% block content %}
-  <div class="justify-center">
-    <div class="md:w-1/2 p-5 bg-clip-padding"
-         data-aos="fade-up"
-         data-aos-duration="800">
-      <div class="flex flex-col items-center gap-4">
-        <div class="w-20 h-20 rounded-full bg-green-600/20 flex items-center justify-center">
-          <span class="ph-fill ph-book-open-text text-4xl text-green-500"></span>
+  <div class="justify-center px-4 pb-8 md:pt-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-4 mb-12" data-aos="fade-up" data-aos-duration="800">
+        <div class="w-20 h-20 border-2 border-accent rounded bg-accent/10 flex items-center justify-center">
+          <span class="ph-fill ph-book-open-text text-4xl text-accent crt-glow"></span>
         </div>
-        <h1 class="text-6xl font-black text-neutral-100">
-          <a href="/4N5W3r">Rules</a>
+        <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow">
+          <a href="/4N5W3r" class="hover:text-secondary transition-colors">Rules</a>
         </h1>
       </div>
-    </div>
-    <div class="md:w-1/2 p-5 bg-clip-padding mb-10 text-neutral-100">
+      
       <div class="space-y-6">
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group"
-             data-aos="fade-up"
-             data-aos-delay="100"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+        <!-- Rule 1 -->
+        <div class="retro-card p-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <div class="pixel-accent mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-green-600/20 text-green-500 font-bold">1</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-primary rounded bg-primary/10 text-primary font-pixel text-xs">
+                1
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-green-500 transition-colors">Individual Event</h3>
-              <p class="text-neutral-300">
+              <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-2">Individual Event</h3>
+              <p class="retro-text text-light/80">
                 This is an individual event. Team play & Cross sharing of answers/hints will result in direct ban.
               </p>
             </div>
           </div>
         </div>
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group"
-             data-aos="fade-up"
-             data-aos-delay="200"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+
+        <!-- Rule 2 -->
+        <div class="retro-card p-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <div class="pixel-accent mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600/20 text-blue-500 font-bold">2</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-secondary rounded bg-secondary/10 text-secondary font-pixel text-xs">
+                2
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-blue-500 transition-colors">Level Structure</h3>
-              <p class="text-neutral-300">
+              <h3 class="font-pixel text-sm text-secondary crt-glow-sm mb-2">Level Structure</h3>
+              <p class="retro-text text-light/80">
                 At each level, participants will encounter multiple clues that collectively point to one final answer.
-                <br />
+                <br /><br />
                 Remember: one level, one correct answer.
               </p>
             </div>
           </div>
         </div>
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group"
-             data-aos="fade-up"
-             data-aos-delay="300"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+
+        <!-- Rule 3 -->
+        <div class="retro-card retro-card-amber p-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <div class="pixel-accent-amber mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-purple-600/20 text-purple-500 font-bold">3</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-accent rounded bg-accent/10 text-accent font-pixel text-xs">
+                3
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-purple-500 transition-colors">Hidden Hints</h3>
-              <p class="text-neutral-300">Hints are available on the play page, but special hints might appear anywhere:</p>
-              <div class="mt-2 grid md:grid-cols-2 grid-cols-1 gap-2">
-                <span class="text-neutral-400 bg-neutral-800/50 rounded-full px-3 py-1 text-sm text-center backdrop-blur-sm hover:bg-purple-900/30 transition-colors flex items-center gap-2 justify-center">
-                  <span class="ph-bold ph-discord-logo align-middle mr-1 text-base"></span>
+              <h3 class="font-pixel text-sm text-accent crt-glow-sm mb-2">Hidden Hints</h3>
+              <p class="retro-text text-light/80 mb-4">Hints are available on the play page, but special hints might appear anywhere:</p>
+              <div class="grid grid-cols-2 gap-3">
+                <span class="retro-text text-light/60 border border-primary/30 rounded px-3 py-2 text-xs text-center flex items-center gap-2 justify-center">
+                  <span class="ph-bold ph-discord-logo text-accent"></span>
                   Discord Server
                 </span>
-                <span class="text-neutral-400 bg-neutral-800/50 rounded-full px-3 py-1 text-sm text-center backdrop-blur-sm hover:bg-purple-900/30 transition-colors flex items-center gap-2 justify-center">
-                  <span class="ph-bold ph-headphones align-middle mr-1 text-base"></span>
+                <span class="retro-text text-light/60 border border-primary/30 rounded px-3 py-2 text-xs text-center flex items-center gap-2 justify-center">
+                  <span class="ph-bold ph-headphones text-accent"></span>
                   Discord VC
                 </span>
-                <span class="text-neutral-400 bg-neutral-800/50 rounded-full px-3 py-1 text-sm text-center backdrop-blur-sm hover:bg-purple-900/30 transition-colors flex items-center gap-2 justify-center">
-                  <span class="ph-bold ph-camera align-middle mr-1 text-base"></span>
+                <span class="retro-text text-light/60 border border-primary/30 rounded px-3 py-2 text-xs text-center flex items-center gap-2 justify-center">
+                  <span class="ph-bold ph-camera text-accent"></span>
                   Instagram
                 </span>
-                <span class="text-neutral-400 bg-neutral-800/50 rounded-full px-3 py-1 text-sm text-center backdrop-blur-sm hover:bg-purple-900/30 transition-colors flex items-center gap-2 justify-center">
-                  <span class="ph-bold ph-bell align-middle mr-1 text-base"></span>
+                <span class="retro-text text-light/60 border border-primary/30 rounded px-3 py-2 text-xs text-center flex items-center gap-2 justify-center">
+                  <span class="ph-bold ph-bell text-accent"></span>
                   Notifications
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group"
-             data-aos="fade-up"
-             data-aos-delay="400"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+
+        <!-- Rule 4 -->
+        <div class="retro-card p-6" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+          <div class="pixel-accent mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-red-600/20 text-red-500 font-bold">4</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-red-500 rounded bg-red-500/10 text-red-500 font-pixel text-xs">
+                4
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-red-500 transition-colors">Account Rules</h3>
-              <p class="text-neutral-300">Multiple accounts are strictly prohibited. One player, one account only!</p>
+              <h3 class="font-pixel text-sm text-red-400 crt-glow-sm mb-2">Account Rules</h3>
+              <p class="retro-text text-light/80">Multiple accounts are strictly prohibited. One player, one account only!</p>
             </div>
           </div>
         </div>
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group hidden"
-             data-aos="fade-up"
-             data-aos-delay="500"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+
+        <!-- Rule 5 (Hidden) -->
+        <div class="retro-card hidden p-6" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
+          <div class="pixel-accent mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-amber-600/20 text-amber-500 font-bold">5</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-secondary rounded bg-secondary/10 text-secondary font-pixel text-xs">
+                5
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-amber-500 transition-colors">
-                Discord Connection Required
-              </h3>
-              <p class="text-neutral-300">Connecting your Discord account is mandatory for lead confirmation.</p>
+              <h3 class="font-pixel text-sm text-secondary crt-glow-sm mb-2">Discord Connection Required</h3>
+              <p class="retro-text text-light/80">Connecting your Discord account is mandatory for lead confirmation.</p>
             </div>
           </div>
         </div>
-        <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group hidden"
-             data-aos="fade-up"
-             data-aos-delay="600"
-             data-aos-duration="800">
-          <div class="flex items-start space-x-4">
+
+        <!-- Rule 6 (Hidden) -->
+        <div class="retro-card hidden p-6" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+          <div class="pixel-accent mb-4"></div>
+          <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-600/20 text-emerald-500 font-bold">★</span>
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-primary rounded bg-primary/10 text-primary font-pixel text-xs">
+                ★
+              </span>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-neutral-100 mb-2 group-hover:text-emerald-500 transition-colors">Bonus Content</h3>
+              <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-2">Bonus Content</h3>
               <div class="space-y-3">
-                <p class="text-neutral-300">• Discord server has its own set of rules - check them out there!</p>
-                <p class="text-neutral-300">
+                <p class="retro-text text-light/80">• Discord server has its own set of rules - check them out there!</p>
+                <p class="retro-text text-light/80">
                   • Hunt for easter eggs throughout the site for bonus points (claimable via Discord only)
                 </p>
               </div>
@@ -135,28 +142,27 @@
           </div>
         </div>
       </div>
-      <div class="button-container mt-8"
-           data-aos="fade-up"
-           data-aos-delay="700"
-           data-aos-duration="800">
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
-                onclick="window.location.href={% url 'rules' %}">
-          <i class="ph-bold ph-question"></i>
+      
+      <!-- Navigation Buttons -->
+      <div class="flex flex-col md:flex-row gap-4 mt-8" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
+                onclick="window.location.href={% url 'faqs' %}">
+          <i class="ph-bold ph-question text-accent"></i>
           FAQs
         </button>
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
                 onclick="window.location.href={% url 'about' %}">
-          <i class="ph-bold ph-info"></i>
+          <i class="ph-bold ph-info text-accent"></i>
           About
         </button>
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
                 onclick="window.location.href={% url 'guidelines' %}">
-          <i class="ph-bold ph-book-open"></i>
+          <i class="ph-bold ph-book-open text-accent"></i>
           Guidelines
         </button>
-        <a href="/discord">
-          <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3">
-            <i class="ph-bold ph-discord-logo"></i>
+        <a href="/discord" class="flex-1">
+          <button class="retro-btn w-full bg-secondary text-dark border-secondary flex items-center justify-center gap-3 py-4 text-xs">
+            <i class="ph-bold ph-discord-logo text-accent"></i>
             Discord Server
           </button>
         </a>

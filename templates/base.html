@@ -29,20 +29,27 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
+      colors: {
             // Background colors
             'bg-dark': '#2d1d0e',
             'bg-light': '#ddcfb5',
+
             // Heading colors
-            'heading': '#08b74f',
-            'subheading': '#fec84b',
+            'heading': '#08b74f',      // H1 headings - green
+            'subheading': '#fec84b',   // H2/H3 subheadings - amber
+
             // Alt color
             'alt': '#fec84b',
-            // Semantic aliases
+
+            // Accent color (orange for icons/arrows)
+            'accent': '#f07a1a',
+
+            // Semantic aliases for easier use
             'primary': '#08b74f',
             'secondary': '#fec84b',
             'dark': '#2d1d0e',
             'light': '#ddcfb5',
+            'orange': '#f07a1a',
             // Retro CRT colors
             'crt-green': '#33ff00',
             'crt-amber': '#ffb000',
@@ -107,26 +114,38 @@
     rel="stylesheet" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
+    /* === STATIC BACKGROUND FOR BETTER VISIBILITY === */
     body {
-      background-color: #2d1d0e;
-      background-size: cover;
-      background-repeat: no-repeat;
+      background-color: #1a1108;
+      background-image: 
+        /* Subtle retro grid pattern */
+        linear-gradient(rgba(8, 183, 79, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8, 183, 79, 0.03) 1px, transparent 1px),
+        /* Base dark gradient */
+        linear-gradient(180deg, #1a1108 0%, #0d0804 100%);
+      background-size: 50px 50px, 50px 50px, 100% 100%;
+      background-repeat: repeat, repeat, no-repeat;
       background-position: center;
+      background-attachment: fixed;
     }
 
+    /* Light theme option */
+    body.light-theme {
+      background-color: #ddcfb5;
+      background-image: 
+        linear-gradient(rgba(45, 29, 14, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 29, 14, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, #ddcfb5 0%, #c9b99e 100%);
+    }
+
+    /* Static background container - no blurry SVGs */
     .static-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
+      display: none;
     }
 
     /* === PURE 8-BIT RETRO STYLE === */
 
-    /* Scanlines overlay effect (subtle vintage CRT) */
+    /* Scanlines overlay effect - more subtle for readability */
     .scanlines::before {
       content: "";
       position: fixed;
@@ -135,10 +154,10 @@
       right: 0;
       bottom: 0;
       background: repeating-linear-gradient(0deg,
-          rgba(0, 0, 0, 0.05),
-          rgba(0, 0, 0, 0.05) 1px,
+          rgba(0, 0, 0, 0.02),
+          rgba(0, 0, 0, 0.02) 1px,
           transparent 1px,
-          transparent 2px);
+          transparent 3px);
       pointer-events: none;
       z-index: 9999;
     }
@@ -181,16 +200,18 @@
         0 4px 0 0 rgba(221, 207, 181, 0.3);
     }
 
-    /* Retro card with vintage game aesthetic */
+    /* Retro card with SOLID background for visibility */
     .retro-card {
       border: 3px solid #08b74f;
       border-radius: 4px;
-      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      background: #251809;
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 4px 0 rgba(8, 183, 79, 0.5),
-        0 6px 20px rgba(0, 0, 0, 0.3);
+        0 6px 20px rgba(0, 0, 0, 0.5);
       transition: all 0.2s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .retro-card:hover {
@@ -198,22 +219,23 @@
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 6px 0 rgba(8, 183, 79, 0.6),
-        0 8px 25px rgba(8, 183, 79, 0.2);
+        0 8px 25px rgba(8, 183, 79, 0.3);
     }
 
     .retro-card-amber {
       border-color: #fec84b;
+      background: #251809;
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 4px 0 rgba(254, 200, 75, 0.5),
-        0 6px 20px rgba(0, 0, 0, 0.3);
+        0 6px 20px rgba(0, 0, 0, 0.5);
     }
 
     .retro-card-amber:hover {
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 6px 0 rgba(254, 200, 75, 0.6),
-        0 8px 25px rgba(254, 200, 75, 0.2);
+        0 8px 25px rgba(254, 200, 75, 0.3);
     }
 
     /* CRT glow text effect */
@@ -316,16 +338,18 @@
         0 2px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /* Pixel card style */
+    /* Pixel card style with SOLID background */
     .pixel-card {
       border: 3px solid #08b74f;
       border-radius: 4px;
-      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      background: #251809;
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 4px 0 rgba(8, 183, 79, 0.4),
-        0 6px 20px rgba(0, 0, 0, 0.3);
+        0 6px 20px rgba(0, 0, 0, 0.5);
       transition: all 0.2s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .pixel-card:hover {
@@ -333,7 +357,7 @@
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 6px 0 rgba(8, 183, 79, 0.5),
-        0 8px 25px rgba(8, 183, 79, 0.2);
+        0 8px 25px rgba(8, 183, 79, 0.3);
     }
 
     /* Retro heading with pixel shadow */
@@ -352,15 +376,17 @@
       letter-spacing: 0.5px;
     }
 
-    /* Retro container with subtle glow */
+    /* Retro container with SOLID background */
     .retro-container {
       border: 3px solid #fec84b;
       border-radius: 6px;
-      background: linear-gradient(180deg, #2d1d0e 0%, #251809 100%);
+      background: #251809;
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 4px 0 rgba(254, 200, 75, 0.4),
-        0 8px 30px rgba(254, 200, 75, 0.15);
+        0 8px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
     }
 
     /* Pixel accent bar */
@@ -381,6 +407,53 @@
           #fec84b 90%,
           transparent 100%);
       box-shadow: 0 0 10px rgba(254, 200, 75, 0.5);
+    }
+
+    .pixel-accent-orange {
+      background: linear-gradient(90deg,
+          transparent 0%,
+          #f07a1a 10%,
+          #f07a1a 90%,
+          transparent 100%);
+      box-shadow: 0 0 10px rgba(240, 122, 26, 0.5);
+    }
+
+    /* Orange accent variations */
+    .text-accent {
+      color: #f07a1a;
+    }
+
+    .bg-accent {
+      background-color: #f07a1a;
+    }
+
+    .border-accent {
+      border-color: #f07a1a;
+    }
+
+    .pixel-border-accent {
+      border: 3px solid #f07a1a;
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 4px 0 0 rgba(240, 122, 26, 0.4),
+        0 0 15px rgba(240, 122, 26, 0.15);
+    }
+
+    .retro-card-accent {
+      border-color: #f07a1a;
+      background: #251809;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 0 rgba(240, 122, 26, 0.5),
+        0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .retro-card-accent:hover {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 0 rgba(240, 122, 26, 0.6),
+        0 8px 25px rgba(240, 122, 26, 0.3);
     }
 
     /* Input fields with retro style */
@@ -680,32 +753,23 @@
   {% endblock head %}
 </head>
 
-<body class="font-Inter mt-24 scanlines">
+<body class="font-Inter mt-24">
   <div id="toast_container" class="fixed bottom-0 right-0 flex w-full flex-col items-center p-4 space-y-2 z-50"></div>
-  <div class="static-bg">
-    <svg width="100%" height="100%" viewBox="0 0 800 800">
-      <defs>
-        <filter id="bb-filter" x="-100%" y="-100%" width="400%" height="400%">
-          <feGaussianBlur stdDeviation="105" in="SourceGraphic" result="blur"></feGaussianBlur>
-        </filter>
-      </defs>
-      <g filter="url(#bb-filter)">
-        <ellipse rx="277.5" ry="70.5" cx="374" cy="152" fill="#08b74f"></ellipse>
-        <ellipse rx="277.5" ry="70.5" cx="609" cy="577" fill="#fec84b"></ellipse>
-        <ellipse rx="277.5" ry="70.5" cx="569" cy="421" fill="#08B74F"></ellipse>
-        <ellipse rx="277.5" ry="70.5" cx="580" cy="245" fill="#ddcfb5"></ellipse>
-      </g>
-    </svg>
+  <!-- Retro texture overlay -->
+  <div class="fixed inset-0 pointer-events-none z-0 opacity-30" 
+       style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2308b74f\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
   </div>
   {% if user.is_authenticated %}
   {% include "components/auth_header.html" %}
   {% else %}
   {% include "components/no_auth_header.html" %}
   {% endif %}
-  <center>
-    {% block content %}
-    {% endblock content %}
-  </center>
+  <div class="relative z-10 min-h-screen">
+    <center>
+      {% block content %}
+      {% endblock content %}
+    </center>
+  </div>
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
   {% block scripts %}
   {% endblock scripts %}

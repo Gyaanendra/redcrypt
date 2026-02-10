@@ -3,144 +3,138 @@
 {% block head_title %}General Guidelines{% endblock head_title %}
 
 {% block content %}
-<div class="justify-center">
-  <div class="p-5 bg-clip-padding mx-auto"
-       data-aos="fade-up"
-       data-aos-duration="800">
-    <div class="flex flex-col items-center gap-4">
-      <div class="w-20 h-20 rounded-full bg-green-600/20 flex items-center justify-center">
-        <span class="ph-fill ph-seal-check text-4xl text-green-500"></span>
+<div class="justify-center px-4 pb-8 md:pt-4">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-4 mb-12" data-aos="fade-up" data-aos-duration="800">
+      <div class="w-20 h-20 border-2 border-primary rounded bg-primary/10 flex items-center justify-center">
+        <span class="ph-fill ph-seal-check text-4xl text-primary crt-glow"></span>
       </div>
-      <h1 class="text-6xl font-black text-neutral-100">Guidelines</h1>
+      <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow">Guidelines</h1>
     </div>
-  </div>
 
-  <div class="md:w-1/2 p-5 mx-auto space-y-4">
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group"
-         data-aos="fade-up"
-         data-aos-delay="100"
-         data-aos-duration="800">
-      <div class="flex items-start space-x-4">
-        <div class="flex-shrink-0">
-          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-purple-600/20 text-purple-500">
-            <span class="ph-fill ph-globe-hemisphere-west text-xl"></span>
-          </span>
-        </div>
-        <div class="flex-1">
-          <p class="text-neutral-300">Answer can lie anywhere on the internet</p>
+    <div class="space-y-6">
+      <!-- Main Guidelines -->
+      <div class="retro-card p-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+        <div class="pixel-accent mb-4"></div>
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <span class="flex items-center justify-center w-10 h-10 border-2 border-accent rounded bg-accent/10 text-accent">
+              <span class="ph-fill ph-globe-hemisphere-west text-xl"></span>
+            </span>
+          </div>
+          <div class="flex-1">
+            <p class="retro-text text-light/80">Answer can lie anywhere on the internet</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group">
-      <div class="flex items-start space-x-4">
-        <div class="flex-shrink-0">
-          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-green-600/20 text-green-500">
-            <span class="ph-fill ph-currency-inr text-xl"></span>
-          </span>
-        </div>
-        <div class="flex-1">
-          <p class="text-neutral-300">No answer will be behind any paywalled service. You don't need to spend a single rupee for any answer</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 transform transition duration-300 hover:scale-[1.02] hover:bg-neutral-800/70 group">
-      <div class="flex items-start space-x-4">
-        <div class="flex-shrink-0">
-          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600/20 text-blue-500">
-            <span class="ph-bold ph-link text-xl"></span>
-          </span>
-        </div>
-        <div class="flex-1">
-          <p class="text-neutral-300">If you came across something, but have no idea how to proceed, try putting it in the url after the domain (without slash `/`). The domain is also used as a url shortner.</p>
+      <div class="retro-card p-6">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <span class="flex items-center justify-center w-10 h-10 border-2 border-primary rounded bg-primary/10 text-primary">
+              <span class="ph-fill ph-currency-inr text-xl"></span>
+            </span>
+          </div>
+          <div class="flex-1">
+            <p class="retro-text text-light/80">No answer will be behind any paywalled service. You don't need to spend a single rupee for any answer</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6 space-y-4"
-         data-aos="fade-up"
-         data-aos-delay="200"
-         data-aos-duration="800">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-neutral-800/30 rounded-xl hover:bg-neutral-800/50 transition-all duration-300">
-          <span class="ph-bold ph-binoculars text-2xl text-amber-500 mb-2"></span>
-          <p class="text-neutral-300 text-sm">You will be required to visit multiple sites on the internet to find answers</p>
-        </div>
-
-        <div class="p-4 bg-neutral-800/30 rounded-xl hover:bg-neutral-800/50 transition-all duration-300">
-          <span class="ph-bold ph-image-square text-2xl text-green-500 mb-2"></span>
-          <p class="text-neutral-300 text-sm">For any images, remember that steganography can be a possibility</p>
-        </div>
-
-        <div class="p-4 bg-neutral-800/30 rounded-xl hover:bg-neutral-800/50 transition-all duration-300">
-          <span class="ph-bold ph-code text-2xl text-blue-500 mb-2"></span>
-          <p class="text-neutral-300 text-sm">All required decoders will be freely available online</p>
-        </div>
-
-        <div class="p-4 bg-neutral-800/30 rounded-xl hover:bg-neutral-800/50 transition-all duration-300">
-          <span class="ph-bold ph-sparkle text-2xl text-purple-500 mb-2"></span>
-          <p class="text-neutral-300 text-sm">Every small detail is important</p>
+      <div class="retro-card p-6">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <span class="flex items-center justify-center w-10 h-10 border-2 border-secondary rounded bg-secondary/10 text-secondary">
+              <span class="ph-bold ph-link text-xl"></span>
+            </span>
+          </div>
+          <div class="flex-1">
+            <p class="retro-text text-light/80">If you came across something, but have no idea how to proceed, try putting it in the url after the domain (without slash `/`). The domain is also used as a url shortner.</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6"
-         data-aos="fade-up"
-         data-aos-delay="300"
-         data-aos-duration="800">
-      <h3 class="text-xl font-bold text-neutral-100 mb-4">Additional Information</h3>
-      <div class="space-y-3">
-        <p class="text-neutral-300 flex items-center gap-2">
-          <span class="ph-fill ph-check-circle text-2xl text-green-500"></span>
-          Follow us everywhere for hints and easter eggs
-        </p>
-        <p class="text-neutral-300 flex items-center gap-2">
-          <span class="ph-fill ph-devices text-2xl text-green-500"></span>
-          Use a Chromium-based browser or Firefox for the best experience
-        </p>
+      <!-- Tips Grid -->
+      <div class="retro-container p-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+        <div class="pixel-accent-amber mb-6"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="border-2 border-primary/30 rounded p-4 bg-dark/30 hover:border-primary/50 transition-colors">
+            <span class="ph-bold ph-binoculars text-2xl text-accent mb-2 block"></span>
+            <p class="retro-text text-light/80 text-sm">You will be required to visit multiple sites on the internet to find answers</p>
+          </div>
+
+          <div class="border-2 border-primary/30 rounded p-4 bg-dark/30 hover:border-primary/50 transition-colors">
+            <span class="ph-bold ph-image-square text-2xl text-primary mb-2 block"></span>
+            <p class="retro-text text-light/80 text-sm">For any images, remember that steganography can be a possibility</p>
+          </div>
+
+          <div class="border-2 border-primary/30 rounded p-4 bg-dark/30 hover:border-primary/50 transition-colors">
+            <span class="ph-bold ph-code text-2xl text-secondary mb-2 block"></span>
+            <p class="retro-text text-light/80 text-sm">All required decoders will be freely available online</p>
+          </div>
+
+          <div class="border-2 border-primary/30 rounded p-4 bg-dark/30 hover:border-primary/50 transition-colors">
+            <span class="ph-bold ph-sparkle text-2xl text-accent mb-2 block"></span>
+            <p class="retro-text text-light/80 text-sm">Every small detail is important</p>
+          </div>
+        </div>
+        <div class="pixel-accent mt-6"></div>
       </div>
-    </div>
 
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-6"
-         data-aos="fade-up"
-         data-aos-delay="400"
-         data-aos-duration="800">
-      <h3 class="text-xl font-bold text-neutral-100 mb-4">Learning Resources</h3>
-      <p class="text-neutral-300 mb-4">Check out amazing learning resources by Hitarth Khurana for Coreana</p>
-      <a href="https://docs.google.com/document/d/1XxcwC54mz6HLrnXiPDgAb0Qzatu56Bb2nOJhRQPBGBI/edit?usp=sharing" target="_blank" class="inline-block">
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3">
-          <span class="ph-bold ph-graduation-cap"></span>
-          Learning Resources
-        </button>
-      </a>
-    </div>
+      <!-- Additional Info -->
+      <div class="retro-card p-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+        <div class="pixel-accent mb-4"></div>
+        <h3 class="font-pixel text-sm text-primary crt-glow-sm mb-4">Additional Information</h3>
+        <div class="space-y-3">
+          <p class="retro-text text-light/80 flex items-center gap-2">
+            <span class="ph-fill ph-check-circle text-xl text-primary"></span>
+            Follow us everywhere for hints and easter eggs
+          </p>
+          <p class="retro-text text-light/80 flex items-center gap-2">
+            <span class="ph-fill ph-devices text-xl text-primary"></span>
+            Use a Chromium-based browser or Firefox for the best experience
+          </p>
+        </div>
+      </div>
 
-    <div class="button-container mt-8"
-         data-aos="fade-up"
-         data-aos-delay="500"
-         data-aos-duration="800">
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
+      <!-- Learning Resources -->
+      <div class="retro-card retro-card-amber p-6" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+        <div class="pixel-accent-amber mb-4"></div>
+        <h3 class="font-pixel text-sm text-secondary crt-glow-sm mb-4">Learning Resources</h3>
+        <p class="retro-text text-light/80 mb-4">Check out amazing learning resources by Hitarth Khurana for Coreana</p>
+        <a href="https://docs.google.com/document/d/1XxcwC54mz6HLrnXiPDgAb0Qzatu56Bb2nOJhRQPBGBI/edit?usp=sharing" target="_blank" class="inline-block">
+          <button class="retro-btn bg-secondary text-dark border-secondary flex items-center gap-3 py-3 px-6 text-xs">
+            <span class="ph-bold ph-graduation-cap text-accent"></span>
+            Learning Resources
+          </button>
+        </a>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex flex-col md:flex-row gap-4 mt-8" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
                 onclick="window.location.href={% url 'rules' %}">
-          <i class="ph-bold ph-scroll"></i>
+          <i class="ph-bold ph-scroll text-accent"></i>
           Rules
         </button>
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
                 onclick="window.location.href={% url 'about' %}">
-          <i class="ph-bold ph-info"></i>
+          <i class="ph-bold ph-info text-accent"></i>
           About
         </button>
-        <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
-                onclick="window.location.href={% url 'guidelines' %}">
-          <i class="ph-bold ph-question"></i>
+        <button class="retro-btn flex-1 bg-dark text-light border-light flex items-center justify-center gap-3 py-4 text-xs"
+                onclick="window.location.href={% url 'faqs' %}">
+          <i class="ph-bold ph-question text-accent"></i>
           FAQs
         </button>
-        <a href="/discord">
-          <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3">
-            <i class="ph-bold ph-discord-logo"></i>
+        <a href="/discord" class="flex-1">
+          <button class="retro-btn w-full bg-secondary text-dark border-secondary flex items-center justify-center gap-3 py-4 text-xs">
+            <i class="ph-bold ph-discord-logo text-accent"></i>
             Discord Server
           </button>
         </a>
+      </div>
     </div>
   </div>
 </div>

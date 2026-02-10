@@ -4,80 +4,89 @@
 {% block head_title %}Terms & Conditions{% endblock head_title %}
 
 {% block content %}
-<div class="min-h-[80vh] justify-center px-4 pb-8">
-  <div class="md:w-1/2 p-5 bg-clip-padding mx-auto"
-       data-aos="fade-up"
-       data-aos-duration="800">
-    <div class="flex flex-col items-center gap-4">
-      <div class="w-20 h-20 rounded-full bg-green-600/20 flex items-center justify-center">
-        <i class="ph-fill ph-scroll text-4xl text-green-500"></i>
-      </div>
-      <h1 class="text-6xl font-black text-neutral-100">Terms & Conditions</h1>
-    </div>
-  </div>
-
+<div class="min-h-screen justify-center px-4 pb-8 md:pt-4">
   <div class="max-w-4xl mx-auto">
-    <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-2xl p-8 space-y-6 transform transition duration-300 hover:scale-[1.01] text-left"
-         data-aos="fade-up"
-         data-aos-delay="100"
-         data-aos-duration="800">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-4 mb-12" data-aos="fade-up" data-aos-duration="800">
+      <div class="w-20 h-20 border-2 border-accent rounded bg-accent/10 flex items-center justify-center">
+        <i class="ph-fill ph-scroll text-4xl text-accent crt-glow"></i>
+      </div>
+      <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow">Terms & Conditions</h1>
+    </div>
+
+    <div class="retro-card p-8 text-left" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+      <div class="pixel-accent mb-6"></div>
       
-      <div class="space-y-4">
-        <p class="text-neutral-300">Welcome to Re-Dcrypt!</p>
-        <div class="space-y-4 text-neutral-300">
+      <div class="space-y-8">
+        <p class="retro-text text-light/80">Welcome to Re-Dcrypt!</p>
+        <div class="space-y-4 retro-text text-light/80">
           <p>These terms and conditions outline the rules and regulations for the use of Re-Dcrypt's Website, located at https://redcrypt.xyz/.</p>
           <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Re-Dcrypt if you do not agree to take all of the terms and conditions stated on this page.</p>
         </div>
-      </div>
 
-      <div class="space-y-2">
-        <h2 class="text-2xl font-bold text-green-500">Cookies</h2>
-        <div class="space-y-4 text-neutral-300">
-          <p>We employ the use of cookies. By accessing Re-Dcrypt, you agreed to use cookies in agreement with the Re-Dcrypt's Privacy Policy.</p>
-          <p>Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
+        <div class="space-y-4">
+          <h2 class="font-pixel text-sm text-primary crt-glow-sm flex items-center gap-2">
+            <i class="ph-fill ph-cookie text-accent"></i>
+            Cookies
+          </h2>
+          <div class="space-y-4 retro-text text-light/80">
+            <p>We employ the use of cookies. By accessing Re-Dcrypt, you agreed to use cookies in agreement with the Re-Dcrypt's Privacy Policy.</p>
+            <p>Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-pixel text-sm text-primary crt-glow-sm flex items-center gap-2">
+            <i class="ph-fill ph-certificate text-accent"></i>
+            License
+          </h2>
+          <div class="space-y-4 retro-text text-light/80">
+            <p>Unless otherwise stated, Re-Dcrypt and/or its licensors own the intellectual property rights for all material on Re-Dcrypt. All intellectual property rights are reserved. You may access this from Re-Dcrypt for your own personal use subjected to restrictions set in these terms and conditions.</p>
+            
+            <p>You must not:</p>
+            <ul class="space-y-2 retro-text text-light/60 list-disc pl-6">
+              <li>Republish material from Re-Dcrypt</li>
+              <li>Sell, rent or sub-license material from Re-Dcrypt</li>
+              <li>Reproduce, duplicate or copy material from Re-Dcrypt</li>
+              <li>Redistribute content from Re-Dcrypt</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-pixel text-sm text-primary crt-glow-sm flex items-center gap-2">
+            <i class="ph-fill ph-warning text-accent"></i>
+            Content Liability
+          </h2>
+          <p class="retro-text text-light/80">We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that arise on your Website.</p>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-pixel text-sm text-primary crt-glow-sm flex items-center gap-2">
+            <i class="ph-fill ph-info text-accent"></i>
+            Disclaimer
+          </h2>
+          <div class="space-y-4 retro-text text-light/80">
+            <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website.</p>
+            
+            <ul class="space-y-2 list-disc pl-6">
+              <li>limit or exclude our or your liability for death or personal injury</li>
+              <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation</li>
+              <li>limit any of our or your liabilities in any way that is not permitted under applicable law</li>
+              <li>exclude any of our or your liabilities that may not be excluded under applicable law</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-4 text-center border-t border-primary/20 mt-8">
+          <a href="https://www.privacypolicyonline.com/terms-conditions-generator/" 
+             class="retro-text text-xs text-light/40 hover:text-light/60 transition-colors">
+            Terms & Conditions Generator
+          </a>
         </div>
       </div>
-
-      <div class="space-y-2">
-        <h2 class="text-2xl font-bold text-green-500">License</h2>
-        <div class="space-y-4 text-neutral-300">
-          <p>Unless otherwise stated, Re-Dcrypt and/or its licensors own the intellectual property rights for all material on Re-Dcrypt. All intellectual property rights are reserved. You may access this from Re-Dcrypt for your own personal use subjected to restrictions set in these terms and conditions.</p>
-          
-          <p>You must not:</p>
-          <ul class="list-disc pl-6 space-y-2">
-            <li>Republish material from Re-Dcrypt</li>
-            <li>Sell, rent or sub-license material from Re-Dcrypt</li>
-            <li>Reproduce, duplicate or copy material from Re-Dcrypt</li>
-            <li>Redistribute content from Re-Dcrypt</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="space-y-2">
-        <h2 class="text-2xl font-bold text-green-500">Content Liability</h2>
-        <p class="text-neutral-300">We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that arise on your Website.</p>
-      </div>
-
-      <div class="space-y-2">
-        <h2 class="text-2xl font-bold text-green-500">Disclaimer</h2>
-        <div class="space-y-4 text-neutral-300">
-          <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website.</p>
-          
-          <ul class="list-disc pl-6 space-y-2">
-            <li>limit or exclude our or your liability for death or personal injury</li>
-            <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation</li>
-            <li>limit any of our or your liabilities in any way that is not permitted under applicable law</li>
-            <li>exclude any of our or your liabilities that may not be excluded under applicable law</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-4 text-center border-t border-neutral-800">
-        <a href="https://www.privacypolicyonline.com/terms-conditions-generator/" 
-           class="text-sm text-neutral-500 hover:text-neutral-400 transition-colors">
-          Terms & Conditions Generator
-        </a>
-      </div>
+      
+      <div class="pixel-accent-amber mt-8 mb-4"></div>
     </div>
   </div>
 </div>

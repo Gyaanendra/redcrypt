@@ -8,11 +8,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 5px var(--glow-color, rgba(8, 183, 79, 0.5)); }
   50% { box-shadow: 0 0 20px var(--glow-color, rgba(8, 183, 79, 0.8)); }
@@ -23,114 +18,266 @@
   animation-delay: calc(var(--delay, 0) * 100ms);
   opacity: 0;
 }
+
+/* Leaderboard card styles with SOLID background */
+.leaderboard-card {
+  border: 3px solid #08b74f;
+  border-radius: 4px;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(8, 183, 79, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.leaderboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 0 rgba(8, 183, 79, 0.4),
+    0 8px 25px rgba(8, 183, 79, 0.15);
+}
+
+/* Top 3 variations */
+.leaderboard-card-gold {
+  border-color: #fec84b;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(254, 200, 75, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboard-card-gold:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 0 rgba(254, 200, 75, 0.5),
+    0 8px 25px rgba(254, 200, 75, 0.25);
+}
+
+.leaderboard-card-silver {
+  border-color: #9ca3af;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(156, 163, 175, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboard-card-silver:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 0 rgba(156, 163, 175, 0.5),
+    0 8px 25px rgba(156, 163, 175, 0.25);
+}
+
+.leaderboard-card-bronze {
+  border-color: #f07a1a;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(240, 122, 26, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboard-card-bronze:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 0 rgba(240, 122, 26, 0.5),
+    0 8px 25px rgba(240, 122, 26, 0.25);
+}
+
+/* Rank badges */
+.rank-badge {
+  border: 2px solid;
+  border-radius: 4px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-badge-gold {
+  border-color: #fec84b;
+  background: rgba(254, 200, 75, 0.1);
+  color: #fec84b;
+}
+
+.rank-badge-silver {
+  border-color: #9ca3af;
+  background: rgba(156, 163, 175, 0.1);
+  color: #9ca3af;
+}
+
+.rank-badge-bronze {
+  border-color: #f07a1a;
+  background: rgba(240, 122, 26, 0.1);
+  color: #f07a1a;
+}
+
+.rank-badge-default {
+  border-color: #08b74f;
+  background: rgba(8, 183, 79, 0.1);
+  color: #08b74f;
+}
+
+/* Avatar container */
+.avatar-container {
+  border: 2px solid #08b74f;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(8, 183, 79, 0.2);
+}
+
+/* Staff card with SOLID background */
+.staff-card {
+  border: 3px solid #f07a1a;
+  border-radius: 4px;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(240, 122, 26, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Banned card with SOLID background */
+.banned-card {
+  border: 3px solid #dc2626;
+  border-radius: 4px;
+  background: #251809;
+  opacity: 0.7;
+}
+
+/* Stats container with SOLID background */
+.stats-container {
+  border: 3px solid #fec84b;
+  border-radius: 4px;
+  background: #251809;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 rgba(254, 200, 75, 0.3),
+    0 8px 30px rgba(0, 0, 0, 0.4);
+}
   </style>
 {% endblock head %}
 {% block content %}
   <div class="justify-center px-4 pb-8 md:pt-4">
     <div class="max-w-5xl mx-auto mb-8" data-aos="fade-up">
+      <!-- Header Section -->
       <div class="flex flex-col items-center gap-4 mb-8">
-        <div class="w-20 h-20 rounded-full bg-green-600/20 flex items-center justify-center animate-fadeIn">
-          <i class="ph-fill ph-trophy text-4xl text-green-500"></i>
+        <div class="w-20 h-20 border-3 border-accent rounded bg-accent/10 flex items-center justify-center animate-fadeIn">
+          <i class="ph-fill ph-trophy text-4xl text-accent crt-glow"></i>
         </div>
-        <h1 class="text-5xl md:text-6xl font-black text-neutral-100 animate-fadeIn"
-            style="--delay: 1">Leaderboard</h1>
+        <h1 class="font-pixel text-3xl md:text-4xl text-primary crt-glow animate-fadeIn" style="--delay: 1">Leaderboard</h1>
+        
+        <!-- User Stats Card -->
         {% if rank != 'unauthorised' %}
-          <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-xl p-6 w-full max-w-md transition-all duration-300 hover:bg-neutral-800/80 animate-fadeIn group"
+          <div class="stats-container mx-auto w-full max-w-md p-6 animate-fadeIn group"
                style="--delay: 2">
+            <div class="pixel-accent mb-4"></div>
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
               <div class="flex items-center gap-4 w-full sm:w-auto">
                 {% if rank <= 3 %}
                   <div class="relative">
-                    <div class="w-14 h-14 rounded-full  bg-green-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 text-green-500">
-                      <span class="text-3xl font-black {% if rank == 1 %}text-yellow-500{% elif rank == 2 %}text-neutral-300{% elif rank == 3 %}text-amber-500{% endif %}">
+                    <div class="w-14 h-14 border-2 {% if rank == 1 %}border-secondary bg-secondary/10{% elif rank == 2 %}border-gray-400 bg-gray-400/10{% else %}border-accent bg-accent/10{% endif %} rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <span class="font-pixel text-xs {% if rank == 1 %}text-secondary{% elif rank == 2 %}text-gray-400{% else %}text-accent{% endif %}">
                         {% if not user.is_staff %}#{% endif %}
                         {{ rank }}
                       </span>
                     </div>
                     {% if rank == 1 %}
                       <div class="absolute -top-2 -right-2">
-                        <i class="ph-fill ph-crown-simple text-xl text-yellow-500"></i>
+                        <i class="ph-fill ph-crown-simple text-xl text-secondary"></i>
                       </div>
                     {% endif %}
                   </div>
                 {% else %}
-                  <div class="w-14 h-14 rounded-full bg-green-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span class="text-3xl font-black text-green-500 mt-1">
+                  <div class="w-14 h-14 border-2 border-primary bg-primary/10 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <span class="font-pixel text-xs text-primary mt-1">
                       {% if not user.is_staff %}#{% endif %}
                     {{ rank }}</span>
                   </div>
                 {% endif %}
                 <div class="flex flex-col">
-                  <h3 class="text-sm uppercase tracking-wider text-neutral-400">Current Level</h3>
-                  <p class="text-neutral-200 text-start font-black">Level {{ user.profile.current_level }}</p>
+                  <h3 class="font-pixel text-xs text-light/60 uppercase">Current Level</h3>
+                  <p class="text-secondary text-start font-pixel text-sm">Level {{ user.profile.current_level }}</p>
                 </div>
               </div>
               <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
                 <div class="flex flex-col items-end">
-                  <span class="text-2xl font-bold text-green-500">{{ user.profile.score }}</span>
-                  <span class="text-xs text-neutral-400">points</span>
+                  <span class="font-pixel text-lg text-primary">{{ user.profile.score }}</span>
+                  <span class="retro-text text-light/40 text-xs">points</span>
                 </div>
-                <div class="w-14 h-14 rounded-full  bg-green-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 text-green-500">
-                  <i class="ph-fill ph-trophy text-3xl text-green-500"></i>
+                <div class="w-14 h-14 border-2 border-primary bg-primary/10 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <i class="ph-fill ph-trophy text-2xl text-primary"></i>
                 </div>
               </div>
             </div>
+            <div class="pixel-accent-amber mt-4"></div>
           </div>
         {% endif %}
       </div>
+      
+      <!-- Players List -->
       <div class="grid grid-cols-1 gap-4">
         <div class="animate-fadeIn" style="--delay: 3">
           <div class="grid gap-4">
             {% for user in players %}
-              <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-xl p-6 transition-all duration-300 hover:bg-neutral-800/80 hover:-translate-y-0.5 hover:scale-[1.01] border border-transparent group">
+              <div class="{% if forloop.counter == 1 %}leaderboard-card-gold{% elif forloop.counter == 2 %}leaderboard-card-silver{% elif forloop.counter == 3 %}leaderboard-card-bronze{% else %}leaderboard-card{% endif %} p-5 group">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-4">
+                    <!-- Rank Badge -->
                     <div class="flex-none">
                       {% if forloop.counter == 1 %}
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold bg-yellow-500/20 text-yellow-500 relative"
-                             style="animation: glow 2s infinite; --glow-color: rgba(234, 179, 8, 0.5)">
-                          <span class="absolute -top-1 -right-1"><i class="ph-fill ph-crown-simple text-yellow-500"></i></span>
+                        <div class="rank-badge rank-badge-gold w-12 h-12 relative" style="animation: glow 2s infinite; --glow-color: rgba(254, 200, 75, 0.5)">
+                          <span class="absolute -top-1 -right-1"><i class="ph-fill ph-crown-simple text-secondary"></i></span>
                           1
                         </div>
                       {% elif forloop.counter == 2 %}
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold bg-neutral-400/20 text-neutral-300 relative"
-                             style="animation: glow 2s infinite; --glow-color: rgba(163, 163, 163, 0.5)">
+                        <div class="rank-badge rank-badge-silver w-12 h-12 relative" style="animation: glow 2s infinite; --glow-color: rgba(156, 163, 175, 0.5)">
                           2
                         </div>
                       {% elif forloop.counter == 3 %}
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold bg-amber-600/20 text-amber-500 relative"
-                             style="animation: glow 2s infinite; --glow-color: rgba(180, 83, 9, 0.5)">
+                        <div class="rank-badge rank-badge-bronze w-12 h-12 relative" style="animation: glow 2s infinite; --glow-color: rgba(240, 122, 26, 0.5)">
                           3
                         </div>
                       {% else %}
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold bg-neutral-800 text-neutral-400">
+                        <div class="rank-badge rank-badge-default w-12 h-12">
                           {{ forloop.counter }}
                         </div>
                       {% endif %}
                     </div>
+                    
+                    <!-- Avatar -->
                     <div class="flex-none relative">
                       <img src="{{ user.avatar_url }}"
                            alt="{{ user }}"
-                           class="w-12 h-12 rounded-xl border-2 border-green-600 transition-transform duration-300 group-hover:scale-110"
+                           class="w-12 h-12 avatar-container pixelated transition-transform duration-300 group-hover:scale-110"
                            height="auto" width="auto">
-                      <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                        <span class="text-[10px] font-bold text-neutral-800">{{ user.current_level }}</span>
+                      <div class="absolute -bottom-1 -right-1 w-5 h-5 border border-primary rounded bg-primary flex items-center justify-center">
+                        <span class="font-pixel text-[8px] text-dark">{{ user.current_level }}</span>
                       </div>
                     </div>
+                    
+                    <!-- User Info -->
                     <div>
                       <a href="{% url 'public-profile' username=user %}"
-                         class="text-neutral-100 font-bold hover:text-green-500 transition-colors block text-start">
+                         class="text-light font-pixel text-xs hover:text-primary transition-colors block text-start">
                         {{ user|truncatechars:15 }}
                       </a>
-                      <div class="flex items-center gap-2 text-sm">
-                        <span class="text-neutral-400">Level {{ user.current_level }}</span>
+                      <div class="flex items-center gap-2 retro-text text-sm">
+                        <span class="text-light/40">Level {{ user.current_level }}</span>
                       </div>
                     </div>
                   </div>
+                  
+                  <!-- Score -->
                   <div class="flex items-center gap-6">
                     <div class="flex flex-col items-end">
-                      <div class="text-xl font-bold text-green-500">{{ user.score }}</div>
-                      <div class="text-xs text-neutral-400">points</div>
+                      <div class="font-pixel text-base text-primary">{{ user.score }}</div>
+                      <div class="retro-text text-light/40 text-xs">points</div>
                     </div>
                   </div>
                 </div>
@@ -138,36 +285,39 @@
             {% endfor %}
           </div>
         </div>
+        
+        <!-- Staff Section -->
         {% if staff %}
         <div class="mt-8 animate-fadeIn" style="--delay: 4">
-          <h2 class="text-2xl font-bold text-green-500 mb-4">Staff Members</h2>
+          <div class="pixel-accent-orange mb-4 mx-auto" style="width: 150px;"></div>
+          <h2 class="font-pixel text-lg text-accent crt-glow-sm mb-4 text-center">Staff Members</h2>
           <div class="grid gap-4">
             {% for user in staff %}
-              <div class="bg-neutral-900/70 backdrop-blur-md shadow-inset-white rounded-xl p-6 transition-all duration-300 hover:bg-neutral-800/80 hover:-translate-y-0.5 hover:scale-[1.01] group">
+              <div class="staff-card p-5 group">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div class="flex items-center gap-4">
                     <div class="flex-none">
-                      <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-green-600/20">
-                        <i class="ph-fill ph-shield text-2xl text-green-500"></i>
+                      <div class="w-12 h-12 border-2 border-accent rounded bg-accent/10 flex items-center justify-center">
+                        <i class="ph-fill ph-shield text-2xl text-accent"></i>
                       </div>
                     </div>
                     <div class="flex-none relative">
                       <img src="{{ user.avatar_url }}"
                            alt="{{ user }}"
-                           class="w-12 h-12 rounded-xl border-2 border-green-600 transition-transform duration-300 group-hover:scale-110" height="auto" width="auto">
+                           class="w-12 h-12 avatar-container pixelated transition-transform duration-300 group-hover:scale-110" height="auto" width="auto">
                     </div>
                     <div class="flex flex-col min-w-0 justify-center items-start">
                       <a href="{% url 'public-profile' username=user %}"
-                         class="text-neutral-100 font-bold hover:text-green-500 transition-colors block truncate">
+                         class="text-light font-pixel text-xs hover:text-primary transition-colors block truncate">
                         {{ user|truncatechars:15 }}
                       </a>
                       <div class="flex items-center gap-2">
-                        <span class="text-green-500 font-medium text-sm">Staff Member</span>
+                        <span class="text-accent retro-text text-sm">Staff Member</span>
                       </div>
                     </div>
                   </div>
                   <div class="flex items-center gap-3 ml-16 sm:ml-0">
-                    <span class="text-neutral-400 text-sm">Administrator</span>
+                    <span class="retro-text text-light/40 text-sm">Administrator</span>
                   </div>
                 </div>
               </div>
@@ -176,26 +326,28 @@
         </div>
         {% endif %}
 
+        <!-- Banned Section -->
         {% if banned %}
         <div class="mt-6 animate-fadeIn" style="--delay: 5">
-          <h2 class="text-xl font-bold text-red-500 mb-4 ">Disqualified Players</h2>
+          <div class="pixel-accent mb-4 mx-auto" style="width: 150px;"></div>
+          <h2 class="font-pixel text-base text-red-500 mb-4 text-center">Disqualified Players</h2>
           <div class="grid gap-4">
             {% for user in banned %}
-              <div class="leaderboard-card bg-red-900/40 backdrop-blur-md shadow-inset-white rounded-xl p-6 transition-all duration-300 hover:bg-red-800/40 hover:-translate-y-0.5 hover:scale-[1.01] group">
+              <div class="banned-card p-5 group">
                 <div class="flex items-center gap-4">
                   <div class="flex-none">
-                    <div class="rank-badge w-12 h-12 rounded-xl flex items-center justify-center bg-red-600/20 text-red-500 text-2xl">
+                    <div class="rank-badge w-12 h-12 border-red-500 bg-red-500/10 text-red-500 text-2xl">
                       <i class="ph-bold ph-prohibit"></i>
                     </div>
                   </div>
                   <div class="flex-none">
                     <img src="{{ user.avatar_url }}"
                          alt="{{ user }}"
-                         class="profile-img border-red-500 opacity-50" height="auto" width="auto">
+                         class="w-12 h-12 border-2 border-red-500 rounded opacity-50 pixelated" height="auto" width="auto">
                   </div>
                   <div class="flex flex-col min-w-0 justify-center items-start">
-                    <span class="text-red-400 font-bold text-start">{{ user|truncatechars:15 }}</span>
-                    <p class="text-neutral-400 text-sm ">Disqualified</p>
+                    <span class="text-red-400 font-pixel text-xs text-start">{{ user|truncatechars:15 }}</span>
+                    <p class="retro-text text-light/40 text-sm">Disqualified</p>
                   </div>
                 </div>
               </div>
