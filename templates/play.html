@@ -247,45 +247,6 @@
   color: #ddcfb5;
   letter-spacing: 0.5px;
 }
-/* Retro Feedback Button */
-
-.feedback-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.retro-feedback-btn {
-  border: 3px solid #fec84b;
-  border-radius: 4px;
-  background: rgba(254, 200, 75, 0.1);
-  color: #fec84b;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.7rem;
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow:
-    inset 0 -2px 0 rgba(0,0,0,0.3),
-    0 4px 0 rgba(254, 200, 75, 0.35),
-    0 0 15px rgba(254, 200, 75, 0.25);
-  transition: all 0.15s ease;
-}
-
-.retro-feedback-btn:hover {
-  background: #fec84b;
-  color: #2d1d0e;
-  transform: translateY(-2px);
-}
-
-.retro-star {
-  font-size: 1.2rem;
-  animation: float 2s ease-in-out infinite;
-}
-
   </style>
 {% endblock head %}
 {% block content %}
@@ -379,74 +340,59 @@
             </div>
           </form>
           <div class="pixel-accent-amber mt-4"></div>
-
         </div>
       </div>
     </div>
   </div>
+  
   <!-- Hints Modal -->
-{% if additionalhints %}
-  <div id="hints-modal"
-       role="dialog"
-       aria-labelledby="modal-title"
-       aria-modal="true"
-       class="fixed inset-0 z-50 hidden">
-    <div class="modal-backdrop fixed inset-0 bg-dark/80 backdrop-blur-md"></div>
-    <div class="fixed inset-0 flex items-center justify-center p-4">
-      <div class="modal-content relative w-full max-w-md">
-        <div class="retro-modal p-6 relative">
-
-          <!-- Close Button -->
-          <button type="button"
-                  id="close-modal"
-                  class="absolute top-4 right-4 text-light/40 hover:text-light transition-colors p-2 rounded focus:outline-none"
-                  aria-label="Close modal">
-            <i class="ph-bold ph-x text-2xl text-accent"></i>
-          </button>
-
-          <!-- Modal Header -->
-          <div class="pixel-accent mb-4"></div>
-          <div class="flex items-center gap-3 mb-5">
-            <span class="flex items-center justify-center w-10 h-10 border-2 border-accent rounded bg-accent/10">
-              <i class="ph-fill ph-lightbulb text-xl text-accent"></i>
-            </span>
-            <h3 id="modal-title"
-                class="font-pixel text-lg text-secondary crt-glow-sm">
-              Available Hints
-            </h3>
-          </div>
-
-          <!-- Hints List -->
-          <div class="space-y-4 overflow-y-auto max-h-[calc(100vh-12rem)]">
-            {% for hint in additionalhints %}
-              <div class="border-2 border-primary/30 rounded p-4 bg-dark/50">
-                <div class="flex items-start gap-3">
-                  <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 border border-primary rounded text-primary text-sm font-pixel">
-                    {{ forloop.counter }}
-                  </span>
-                  <p class="retro-text text-light/80">
-                    {{ hint.hint_text | safe }}
-                  </p>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-
-          <div class="pixel-accent-amber mt-4"></div>
-
-          <!-- ⭐ Feedback Button (ADDED — centered retro style) -->
-          <div class="feedback-wrapper">
-            <button type="button" class="retro-feedback-btn">
-              <i class="ph-fill ph-star retro-star"></i>
-
-              Feedback
+  {% if additionalhints %}
+    <div id="hints-modal"
+         role="dialog"
+         aria-labelledby="modal-title"
+         aria-modal="true"
+         class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop fixed inset-0 bg-dark/80 backdrop-blur-md"></div>
+      <div class="fixed inset-0 flex items-center justify-center p-4">
+        <div class="modal-content relative w-full max-w-md">
+          <div class="retro-modal p-6 relative">
+            <!-- Close Button -->
+            <button type="button"
+                    id="close-modal"
+                    class="absolute top-4 right-4 text-light/40 hover:text-light transition-colors p-2 rounded focus:outline-none"
+                    aria-label="Close modal">
+              <i class="ph-bold ph-x text-2xl text-accent"></i>
             </button>
+            
+            <!-- Modal Header -->
+            <div class="pixel-accent mb-4"></div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="flex items-center justify-center w-10 h-10 border-2 border-accent rounded bg-accent/10">
+                <i class="ph-fill ph-lightbulb text-xl text-accent"></i>
+              </span>
+              <h3 id="modal-title" class="font-pixel text-lg text-secondary crt-glow-sm">Available Hints</h3>
+            </div>
+            
+            <!-- Hints List -->
+            <div class="space-y-4 overflow-y-auto max-h-[calc(100vh-12rem)]">
+              {% for hint in additionalhints %}
+                <div class="border-2 border-primary/30 rounded p-4 bg-dark/50">
+                  <div class="flex items-start gap-3">
+                    <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 border border-primary rounded text-primary text-sm font-pixel">
+                      {{ forloop.counter }}
+                    </span>
+                    <p class="retro-text text-light/80">{{ hint.hint_text | safe }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            
+            <div class="pixel-accent-amber mt-4"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
+    
     <script>
 const modal = document.getElementById('hints-modal');
 const modalContent = modal.querySelector('.modal-content');
