@@ -59,6 +59,104 @@
     0 6px 0 rgba(240, 122, 26, 0.4),
     0 8px 25px rgba(240, 122, 26, 0.15);
 }
+/* ===== MAX RETRO ARCADE STAR ===== */
+
+.retro-star-wrapper {
+  position: relative;
+  width: fit-content;
+  isolation: isolate;
+}
+
+/* star core */
+
+.retro-star {
+  width: 280px;
+  height: 280px;
+
+  border: none;
+
+  image-rendering: pixelated;
+
+  filter:
+    contrast(1.8)
+    saturate(2)
+    brightness(1.15);
+
+  animation:
+    float 6s ease-in-out infinite,
+    arcadePulse 1.8s infinite,
+    arcadeJitter 0.12s infinite;
+}
+
+/* phosphor glow burst */
+
+.retro-star-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+
+  background: radial-gradient(
+    circle,
+    rgba(8,183,79,0.5),
+    rgba(254,200,75,0.25),
+    transparent 70%
+  );
+
+  filter: blur(20px);
+  z-index: -1;
+
+  animation: glowBurst 2.5s infinite;
+}
+
+/* CRT scanlines */
+
+.crt-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35) 0px,
+    rgba(0,0,0,0.35) 2px,
+    transparent 2px,
+    transparent 5px
+  );
+
+  mix-blend-mode: overlay;
+  opacity: 0.75;
+
+  animation: crtFlicker 1.5s infinite;
+}
+
+/* animations */
+
+@keyframes arcadePulse {
+  0% { filter: contrast(1.8) saturate(2) brightness(1.1); }
+  50% { filter: contrast(2.1) saturate(2.4) brightness(1.35); }
+  100% { filter: contrast(1.8) saturate(2) brightness(1.1); }
+}
+
+@keyframes glowBurst {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes crtFlicker {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes arcadeJitter {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(1px,-1px); }
+  50% { transform: translate(-1px,1px); }
+  75% { transform: translate(1px,1px); }
+  100% { transform: translate(0,0); }
+}
+
   </style>
 {% endblock head %}
 {% block content %}
@@ -81,29 +179,51 @@
         <div class="retro-text text-light/60 mt-4"
              data-aos="fade-up"
              data-aos-delay="400">Please take a moment to fill out the feedback form below.</div>
-        <div class="mt-6"
-             data-aos="fade-up"
-             data-aos-delay="400">
-          <button onclick="window.open('https://forms.fossbu.co/form/sVvK1ozU', '_blank')"
-                  class="retro-btn bg-secondary text-dark border-secondary hover:bg-primary flex items-center gap-3 py-4 px-8">
-            <i class="ph-bold ph-clipboard-text text-accent"></i>
-            Feedback Form
-          </button>
-        </div>
+        <div class="mt-6 flex justify-center"
+        data-aos="fade-up"
+        data-aos-delay="400">
+
+      <button onclick="window.open('https://forms.fossbu.co/form/sVvK1ozU', '_blank')"
+              class="font-pixel text-xs uppercase tracking-wide
+                    border-4 border-secondary
+                    bg-secondary/10 text-secondary
+                    px-8 py-4 rounded
+                    flex items-center gap-3
+                    transition-all duration-150
+                    hover:bg-secondary hover:text-dark
+                    hover:-translate-y-1
+                    shadow-[0_4px_0_rgba(254,200,75,0.4)]">
+
+        <i class="ph-fill ph-star animate-pulse"></i>
+        Feedback Form
+
+      </button>
+
+</div>
+
       </div>
       
       <!-- Celebration Video -->
       <div class="flex justify-center mb-12"
-           data-aos="fade-up"
-           data-aos-delay="600">
-        <video class="celebration-video w-64 h-64 md:w-96 md:h-96 border-2 border-primary rounded"
-               autoplay
-               loop
-               muted
-               playsinline>
-          <source src="{% static 'videos/star.webm' %}" type="video/webm">
-        </video>
+     data-aos="fade-up"
+     data-aos-delay="600">
+
+        <div class="retro-star-wrapper">
+
+          <video class="celebration-video retro-star"
+                autoplay
+                loop
+                muted
+                playsinline>
+            <source src="{% static 'videos/star.webm' %}" type="video/webm">
+          </video>
+
+          <div class="crt-overlay"></div>
+
+        </div>
+
       </div>
+
       
       <!-- Stats -->
       <div class="flex justify-center gap-4 mb-12"

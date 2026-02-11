@@ -4,8 +4,11 @@
 {% block head_title %}Event Ended{% endblock head_title %}
 
 {% block content %}
+<h1 style="color:red;">THIS IS ENDED.HTML</h1>
+
 <div class="min-h-screen flex items-center justify-center px-4 pb-8 md:pt-4">
   <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="800">
+
     <!-- Header -->
     <div class="text-center mb-8">
       <div class="w-20 h-20 mx-auto border-2 border-accent rounded bg-accent/10 flex items-center justify-center mb-6">
@@ -14,24 +17,39 @@
       <h1 class="font-pixel text-2xl md:text-3xl text-primary crt-glow mb-4">Thank You!</h1>
       <p class="retro-text text-xl text-light/60">The event has ended successfully.</p>
     </div>
-    
+
     <!-- Feedback Form -->
     <div class="retro-card p-8 mb-8"
          data-aos="fade-up"
          data-aos-delay="100"
          data-aos-duration="800">
+
       <div class="pixel-accent mb-6"></div>
-      <p class="retro-text text-light/80 text-center mb-6">Please take a moment to fill out the feedback form below.</p>
-      
+
+      <p class="retro-text text-light/80 text-center mb-6">
+        Please take a moment to fill out the feedback form.
+      </p>
+
+      <!-- ⭐ RETRO FEEDBACK BUTTON -->
       <div class="flex justify-center">
         <button onclick="window.open('https://forms.fossbu.co/form/sVvK1ozU', '_blank')"
-                class="retro-btn bg-secondary text-dark border-secondary hover:bg-primary flex items-center gap-3 py-4 px-8">
-          <i class="ph-bold ph-clipboard-text text-accent"></i>
+                class="font-pixel text-xs uppercase tracking-wide
+                       border-4 border-secondary
+                       bg-secondary/10 text-secondary
+                       px-8 py-4 rounded
+                       flex items-center gap-3
+                       transition-all duration-150
+                       hover:bg-secondary hover:text-dark
+                       hover:-translate-y-1
+                       shadow-[0_4px_0_rgba(254,200,75,0.4)]">
+
+          <i class="ph-fill ph-star text-lg animate-pulse"></i>
           Feedback Form
         </button>
       </div>
-      
+
       <div class="pixel-accent-amber mt-6"></div>
+
     </div>
 
     <!-- Leaderboard Button -->
@@ -39,12 +57,16 @@
          data-aos="fade-up"
          data-aos-delay="200"
          data-aos-duration="800">
-      <a href="{% url 'leaderboard' %}" 
+
+      <a href="{% url 'leaderboard' %}"
          class="retro-btn bg-primary text-dark border-primary hover:bg-secondary flex items-center gap-3 py-4 px-8">
+
         <i class="ph-fill ph-chart-line-up text-accent"></i>
         View Leaderboard
+
       </a>
     </div>
+
   </div>
 </div>
 {% endblock content %}
