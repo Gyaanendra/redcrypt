@@ -13,7 +13,7 @@ def hunt_status(function):
                 return function(request, *args, **kwargs)
             elif status == 'not started':
                 t = Setting.get('HUNT_START_TIME')
-                d = t.strftime("%m/%d/%Y %H:%M:%S")
+                d = t.isoformat()
                 return render(request, 'not_active.html', {
                     'title': 'Starting soon',
                     'heading': 'The Hunt will be starting soon',
@@ -21,7 +21,7 @@ def hunt_status(function):
                 })
             elif status == 'paused':
                 t = Setting.get('HUNT_RESUME_TIME')
-                d = t.strftime("%m/%d/%Y %H:%M:%S")
+                d = t.isoformat()
                 return render(request, 'not_active.html', {
                     'title': 'Hunt Paused',
                     'heading': 'Hunt has been paused',

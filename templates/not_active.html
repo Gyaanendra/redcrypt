@@ -140,12 +140,7 @@
     }
   }
 
-  function convertToIST(date) {
-    const istOffset = 5.5 * 60 * 60 * 1000;
-    return new Date(date.getTime() + istOffset);
-  }
-
-  var countDownDate = convertToIST(new Date("{{time}}")).getTime();
+  var countDownDate = new Date("{{time}}").getTime();
 
   function formatDate(date) {
     const options = {
