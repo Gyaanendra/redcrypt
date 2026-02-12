@@ -141,83 +141,43 @@ Home
   </div>
 
   <!-- Prize Cards Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Top 3 -->
-    <div class="retro-card p-6">
-      <div class="pixel-accent mb-4"></div>
-      <div class="text-lg font-pixel mb-6 text-primary crt-glow-sm text-center">TOP 3</div>
-      <ul class="space-y-4 retro-text text-light">
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <div class="flex flex-col">
-            <span>1 year</span>
-            <span class="text-secondary font-bold">Linkedin Premium</span>
+  <!-- Prize Cards Grid -->
+  <div class="flex items-center justify-center p-10 reveal-on-scroll" data-delay="2">
+    <div class="retro-card p-8 border-2 border-dashed border-primary/50 relative overflow-hidden group">
+      <div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+
+      <!-- Glitchy text effect container -->
+      <div class="relative z-10 text-center space-y-4">
+        <h2
+          class="text-2xl md:text-3xl font-pixel text-primary crt-glow text-center tracking-widest relative inline-block">
+          <span class="mr-2">></span>
+          LOADING_PRIZES
+          <span class="blink-cursor ml-2">_</span>
+        </h2>
+
+        <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-mono text-secondary opacity-80 mt-2">
+          <span>[</span>
+          <div class="w-24 h-2 bg-dark border border-secondary p-0.5">
+            <div class="h-full bg-secondary w-2/3 animate-pulse"></div>
           </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>1 year <code class="text-primary px-1 bg-primary/20 rounded">.xyz</code> domain</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>Certificate</span>
-        </li>
-      </ul>
-    </div>
+          <span>] 64%</span>
+        </div>
 
-    <!-- Top 5 -->
-    <div class="retro-card retro-card-amber p-6">
-      <div class="pixel-accent-amber mb-4"></div>
-      <div class="text-lg font-pixel mb-6 text-secondary crt-glow-sm text-center">TOP 5</div>
-      <ul class="space-y-4 retro-text text-light">
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <div class="flex flex-col">
-            <span>6 months</span>
-            <span class="text-secondary font-bold">Linkedin Premium</span>
-          </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>1 year <code class="text-secondary px-1 bg-secondary/20 rounded">.xyz</code> domain</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>Certificate</span>
-        </li>
-      </ul>
-    </div>
+        <p class="text-xs font-mono text-light/70 uppercase tracking-widest mt-4">
+          Decryption in progress...
+        </p>
+      </div>
 
-    <!-- Top 40 -->
-    <div class="retro-card p-6">
-      <div class="pixel-accent mb-4"></div>
-      <div class="text-lg font-pixel mb-6 text-primary crt-glow-sm text-center">TOP 40</div>
-      <ul class="space-y-4 retro-text text-light">
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>1 year <code class="text-primary px-1 bg-primary/20 rounded">.xyz</code> domain</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>Certificate</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Everyone -->
-    <div class="retro-card retro-card-amber p-6">
-      <div class="pixel-accent-amber mb-4"></div>
-      <div class="text-lg font-pixel mb-6 text-secondary crt-glow-sm text-center">EVERYONE</div>
-      <ul class="space-y-4 retro-text text-light">
-        <li class="flex items-start gap-3">
-          <i class="ph-fill ph-check-circle text-lg text-accent mt-1 flex-shrink-0 crt-glow-sm"></i>
-          <span>Certificate of participation</span>
-        </li>
-      </ul>
+      <!-- Decorative corners -->
+      <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-primary"></div>
+      <div class="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-primary"></div>
+      <div class="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-primary"></div>
+      <div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-primary"></div>
     </div>
   </div>
 </div>
 
+{% comment %}
 <!-- SPONSORS SECTION -->
 <div class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4 reveal-on-scroll">
   <!-- Section Header -->
@@ -249,4 +209,5 @@ Home
     <div class="pixel-accent-amber mt-8"></div>
   </div>
 </div>
+{% endcomment %}
 {% endblock content %}
