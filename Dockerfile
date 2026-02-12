@@ -4,8 +4,7 @@ COPY . .
 ARG PASS
 ENV PASS=$PASS
 RUN pip install -r requirements.txt
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-RUN python manage.py collectstatic
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 EXPOSE 8000
-CMD ["gunicorn","triviaquiz.wsgi","--bind","0.0.0.0:8000"]
+CMD ["/entrypoint.sh"]

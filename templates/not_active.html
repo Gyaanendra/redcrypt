@@ -5,61 +5,64 @@
 
 {% block head %}
 <style>
-.countdown-unit {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 5px;
-  border: 3px solid #08b74f;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #2d1d0e 0%, #1f1407 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 0 rgba(8, 183, 79, 0.3);
-  overflow: hidden;
-}
-
-.number-display {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.5rem;
-  color: #08B74F;
-}
-
-@keyframes slideUpdate {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
+  .countdown-unit {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 3px solid #08b74f;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #2d1d0e 0%, #1f1407 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 4px 0 rgba(8, 183, 79, 0.3);
+    overflow: hidden;
   }
-  50% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  51% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-.number-update {
-  animation: slideUpdate 0.6s ease-in-out;
-}
+  .number-display {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #08B74F;
+  }
 
-.unit-label {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 0.5rem;
-  color: #08B74F;
-}
+  @keyframes slideUpdate {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    51% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .number-update {
+    animation: slideUpdate 0.6s ease-in-out;
+  }
+
+  .unit-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+    color: #08B74F;
+  }
 </style>
 {% endblock head %}
 
@@ -109,8 +112,9 @@
 
       <div class="mt-12 text-center">
         <div class="inline-flex items-center gap-2 retro-container px-6 py-3">
-          <i class="ph-fill ph-calendar text-xl text-primary"></i>
-          <span class="retro-text text-sm" id="formatted-date">Starting {{ time }}</span>
+          <i class="ph-fill ph-calendar text-2xl text-primary"></i>
+          <span class="retro-text text-xl md:text-2xl text-secondary font-bold tracking-wide"
+            id="formatted-date">Starting {{ time }}</span>
         </div>
       </div>
       <div class="pixel-accent-amber mt-8 mx-auto" style="width: 200px;"></div>
@@ -120,69 +124,69 @@
 </div>
 
 <script>
-function updateNumber(displayId, value) {
-  const display = document.querySelector(`#${displayId}`);
-  const paddedValue = value.toString().padStart(2, '0');
-  
-  if (display.textContent !== paddedValue) {
-    display.classList.add('number-update');
-    setTimeout(() => {
-      display.textContent = paddedValue;
-    }, 300);
-    
-    display.addEventListener('animationend', function() {
-      display.classList.remove('number-update');
-    }, { once: true });
+  function updateNumber(displayId, value) {
+    const display = document.querySelector(`#${displayId}`);
+    const paddedValue = value.toString().padStart(2, '0');
+
+    if (display.textContent !== paddedValue) {
+      display.classList.add('number-update');
+      setTimeout(() => {
+        display.textContent = paddedValue;
+      }, 300);
+
+      display.addEventListener('animationend', function () {
+        display.classList.remove('number-update');
+      }, { once: true });
+    }
   }
-}
 
-function convertToIST(date) {
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  return new Date(date.getTime() + istOffset);
-}
+  function convertToIST(date) {
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    return new Date(date.getTime() + istOffset);
+  }
 
-var countDownDate = convertToIST(new Date("{{time}}")).getTime();
+  var countDownDate = convertToIST(new Date("{{time}}")).getTime();
 
-function formatDate(date) {
-  const options = { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric',
-    hour: '2-digit', 
-    minute: '2-digit',
-  };
-  return new Date(date).toLocaleDateString('en-US', options);
-}
+  function formatDate(date) {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    return new Date(date).toLocaleDateString('en-US', options);
+  }
 
-document.getElementById('formatted-date').textContent = `Starting ${formatDate(countDownDate)}`;
+  document.getElementById('formatted-date').textContent = `Starting ${formatDate(countDownDate)}`;
 
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
 
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  updateNumber('days-display', days);
-  updateNumber('hours-display', hours);
-  updateNumber('minutes-display', minutes);
-  updateNumber('seconds-display', seconds);
+    updateNumber('days-display', days);
+    updateNumber('hours-display', hours);
+    updateNumber('minutes-display', minutes);
+    updateNumber('seconds-display', seconds);
 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown-container").innerHTML = `
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown-container").innerHTML = `
       <div class="text-center p-8">
         <i class="ph-fill ph-confetti text-5xl text-primary mb-4 block"></i>
         <h2 class="font-pixel text-lg text-primary crt-glow">Hunt Started!</h2>
       </div>
     `;
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
-  }
-}, 1000);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
+  }, 1000);
 </script>
 {% endblock content %}
