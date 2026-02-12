@@ -18,7 +18,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="English" />
   <meta name="author" content="DiluteWater" />
-  <meta name="theme-color" content="#2d1d0e" />
+  <meta name="theme-color" content="#65350f" />
   <meta property="og:title" content="Re-Dcrypt 3" />
   <meta property="og:description"
     content="A cryptic hunt in which you would face questions in any form. You need to use hints, Google & your out-of-the-box thinking skills to solve it." />
@@ -30,9 +30,9 @@
       theme: {
         extend: {
       colors: {
-            // Background colors
-            'bg-dark': '#2d1d0e',
-            'bg-light': '#ddcfb5',
+        // Background colors
+        'dark': '#65350f',
+        'bg-light': '#ddcfb5',
 
             // Heading colors
             'heading': '#08b74f',      // H1 headings - green
@@ -116,13 +116,13 @@
   <style>
     /* === STATIC BACKGROUND FOR BETTER VISIBILITY === */
     body {
-      background-color: #1a1108;
+      background-color: #65350f;
       background-image: 
         /* Subtle retro grid pattern */
         linear-gradient(rgba(8, 183, 79, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(8, 183, 79, 0.03) 1px, transparent 1px),
-        /* Base dark gradient */
-        linear-gradient(180deg, #1a1108 0%, #0d0804 100%);
+        /* Base warm gradient */
+        linear-gradient(180deg, #65350f 0%, #3f2308 100%);
       background-size: 50px 50px, 50px 50px, 100% 100%;
       background-repeat: repeat, repeat, no-repeat;
       background-position: center;
@@ -1495,12 +1495,51 @@
     .toast-exit {
       animation: toastExit 0.3s forwards ease-in-out;
     }
+  /* === Video background styles === */
+  /* Full-screen, non-interactive video background */
+  #bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Dim overlay to improve text readability */
+  .bg-video-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(37, 24, 9, 0.45);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Ensure main site content sits above the video */
+  main, header, footer, .site-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    #bg-video { display: none; }
+  }
+
   </style>
   {% block head %}
   {% endblock head %}
 </head>
 
 <body class="font-Inter mt-24 {% if request.path == '/' or request.path == '/index/' %}home-page{% endif %}">
+  <!-- Full-screen background video (non-interactive) -->
+  <video id="bg-video" autoplay muted loop playsinline poster="{% static 'videos/bg-poster.jpg' %}">
+    <source src="{% static 'videos/bg.webm' %}" type="video/webm">
+    <source src="{% static 'videos/bg.mp4' %}" type="video/mp4">
+  </video>
+  <div class="bg-video-overlay" aria-hidden="true"></div>
+
   <div id="toast_container" class="fixed bottom-0 right-0 flex w-full flex-col items-center p-4 space-y-2 z-50"></div>
   
   <!-- Enhanced CRT Scanlines Container -->

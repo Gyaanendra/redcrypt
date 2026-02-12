@@ -9,7 +9,6 @@ module.exports = {
         extend: {
             colors: {
                 // Background colors
-                'bg-dark': '#2d1d0e',
                 'bg-light': '#ddcfb5',
 
                 // Heading colors
@@ -22,7 +21,7 @@ module.exports = {
                 // Semantic aliases for easier use
                 'primary': '#08b74f',
                 'secondary': '#fec84b',
-                'dark': '#2d1d0e',
+                'dark': '#65350f',
                 'light': '#ddcfb5',
 
                 // Retro CRT colors

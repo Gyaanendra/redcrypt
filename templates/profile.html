@@ -67,7 +67,7 @@ Profile
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3">
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <i class="ph-fill ph-envelope text-primary"></i>
-              <span class="retro-text text-light truncate text-sm">{{ user.email }}</span>
+              <span class="retro-text text-light truncate text-base">{{ user.email }}</span>
             </div>
             {% if user.emailaddress_set.all.0.verified %}
             <span class="inline-flex items-center gap-1 text-primary text-xs bg-primary/10 px-3 py-1 rounded">
@@ -91,9 +91,9 @@ Profile
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <i class="ph-fill ph-user text-secondary"></i>
               {% if profile.name %}
-              <span class="retro-text text-light text-sm">{{ profile.name }}</span>
+              <span class="retro-text text-light text-base">{{ profile.name }}</span>
               {% else %}
-              <span class="retro-text text-light/40 text-sm">Display name not set</span>
+              <span class="retro-text text-light/40 text-base">Display name not set</span>
               {% endif %}
             </div>
             {% if not profile.name %}
@@ -111,9 +111,9 @@ Profile
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <i class="ph-fill ph-graduation-cap text-secondary"></i>
               {% if profile.organization %}
-              <span class="retro-text text-light text-sm">{{ profile.organization }}</span>
+              <span class="retro-text text-light text-base">{{ profile.organization }}</span>
               {% else %}
-              <span class="retro-text text-light/40 text-sm">Organization not set</span>
+              <span class="retro-text text-light/40 text-base">Organization not set</span>
               {% endif %}
             </div>
             {% if not profile.organization %}
