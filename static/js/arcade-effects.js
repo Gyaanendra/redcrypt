@@ -77,21 +77,23 @@ const ButtonEffects = {
   }
 };
 
-// 8-bit Particle System - ENHANCED (More particles, more impact)
+// 8-bit Particle System - Mobile Optimized
 const ParticleSystem = {
-  create(x, y, color = '#08b74f', count = 12) { // Increased from 8 to 12
+  create(x, y, color = '#08b74f', count = 12) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    
+    // Disable particles on mobile
+    if (window.innerWidth < 768) return;
     
     const particles = [];
     const colors = [color, '#fec84b', '#f07a1a', '#ddcfb5', '#08b74f', '#ff00ff'];
     
     for (let i = 0; i < count; i++) {
       const particle = document.createElement('div');
-      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5; // Add randomness
-      const velocity = 3 + Math.random() * 4; // Faster velocity
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+      const velocity = 3 + Math.random() * 4;
       const particleColor = colors[Math.floor(Math.random() * colors.length)];
       
-      // Random particle shapes
       const shapes = ['0%', '20%', '50%'];
       const borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
       
@@ -104,10 +106,9 @@ const ParticleSystem = {
         top: ${y}px;
         pointer-events: none;
         z-index: 99999;
-        box-shadow: 
-          0 0 6px ${particleColor},
-          0 0 12px ${particleColor};
+        box-shadow: 0 0 6px ${particleColor};
         border-radius: ${borderRadius};
+        will-change: transform;
       `;
       
       document.body.appendChild(particle);
@@ -116,7 +117,7 @@ const ParticleSystem = {
         vx: Math.cos(angle) * velocity,
         vy: Math.sin(angle) * velocity,
         life: 1.0,
-        decay: 0.015 + Math.random() * 0.01 // Variable decay
+        decay: 0.015 + Math.random() * 0.01
       });
     }
     
@@ -133,14 +134,16 @@ const ParticleSystem = {
           const currentX = parseFloat(p.element.style.left);
           const currentY = parseFloat(p.element.style.top);
           
-          // Enhanced physics with gravity and rotation
-          p.element.style.left = `${currentX + p.vx}px`;
-          p.element.style.top = `${currentY + p.vy + 1}px`; // Stronger gravity
+          p.element.style.transform = `translate(${p.vx}px, ${p.vy + 1}px)`;
           p.element.style.opacity = p.life;
-          p.element.style.transform = `rotate(${p.life * 360}deg)`; // Add rotation
           
-          // Trail effect
-          if (p.life > 0.5 && Math.random() > 0.7) {
+          // Only animate rotation on desktop
+          if (window.innerWidth >= 768) {
+            p.element.style.transform += ` rotate(${p.life * 360}deg)`;
+          }
+          
+          // Trail effect only on desktop
+          if (p.life > 0.5 && Math.random() > 0.7 && window.innerWidth >= 768) {
             this.createTrail(currentX, currentY, p.element.style.background);
           }
         } else {
@@ -154,6 +157,8 @@ const ParticleSystem = {
   },
   
   createTrail(x, y, color) {
+    if (window.innerWidth < 768) return;
+    
     const trail = document.createElement('div');
     trail.style.cssText = `
       position: fixed;
@@ -218,13 +223,16 @@ const LoadingEffects = {
   }
 };
 
-// Attract Mode (Idle Animation) - FASTER ACTIVATION
+// Attract Mode (Idle Animation) - Mobile Optimized
 const AttractMode = {
   timeout: null,
-  idleTime: 20000, // Reduced from 30000 to 20000 (20 seconds)
+  idleTime: 20000,
   isActive: false,
   
   init() {
+    // Disable attract mode on mobile
+    if (window.innerWidth < 768) return;
+    
     this.resetTimer();
     ['mousemove', 'keypress', 'click', 'touchstart', 'scroll'].forEach(event => {
       document.addEventListener(event, () => this.resetTimer());
@@ -239,18 +247,17 @@ const AttractMode = {
   
   start() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 768) return;
     
     this.isActive = true;
     document.body.classList.add('attract-mode');
     
-    // More aggressive floating
     const title = document.querySelector('h1');
     if (title) {
       title.classList.add('attract-float');
-      title.style.animationDuration = '2s'; // Faster animation
+      title.style.animationDuration = '2s';
     }
     
-    // Multiple blinking elements
     document.querySelectorAll('.retro-btn').forEach((btn, index) => {
       setTimeout(() => {
         btn.classList.add('press-start-blink');
@@ -293,6 +300,7 @@ const VisualSound = {
   
   showWave(color, size = 40, duration = 600) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 768) return;
     
     const wave = document.createElement('div');
     wave.style.cssText = `
@@ -305,8 +313,9 @@ const VisualSound = {
       border-radius: 50%;
       pointer-events: none;
       z-index: 99999;
-      box-shadow: 0 0 20px ${color}, 0 0 40px ${color};
+      box-shadow: 0 0 20px ${color};
       animation: soundWave ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      will-change: transform;
     `;
     document.body.appendChild(wave);
     setTimeout(() => wave.remove(), duration);
@@ -355,7 +364,7 @@ const ScoreCounter = {
   }
 };
 
-// Text Scramble Effect - ENHANCED
+// Text Scramble Effect - Mobile Optimized
 const TextScramble = {
   chars: '!<>-_\\/[]{}—=+*^?#________ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
   
@@ -365,8 +374,14 @@ const TextScramble = {
       return;
     }
     
+    // Skip scramble animation on mobile for better performance
+    if (window.innerWidth < 768) {
+      element.textContent = finalText;
+      return;
+    }
+    
     let iteration = 0;
-    const totalIterations = finalText.length * 4; // More iterations
+    const totalIterations = finalText.length * 4;
     
     const interval = setInterval(() => {
       element.textContent = finalText
@@ -378,7 +393,6 @@ const TextScramble = {
         })
         .join('');
       
-      // Add glitch effect during scramble
       if (iteration % 5 === 0) {
         element.style.textShadow = `
           ${Math.random() * 4 - 2}px 0 #ff0000,
@@ -392,7 +406,6 @@ const TextScramble = {
         clearInterval(interval);
         element.textContent = finalText;
         element.style.textShadow = '';
-        ScreenEffects.flash('success');
       }
     }, duration / totalIterations);
   }
@@ -423,13 +436,16 @@ const Typewriter = {
   }
 };
 
-// Random Glitch Trigger - SUBTLE VERSION
+// Random Glitch Trigger - Mobile Optimized
 const RandomGlitch = {
   init() {
-    // Random glitch on headings every 15-20 seconds (less frequent)
+    // Disable random glitch on mobile
+    if (window.innerWidth < 768) return;
+    
+    // Random glitch on headings every 15-20 seconds
     setInterval(() => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (Math.random() > 0.85) { // Only 15% chance
+      if (Math.random() > 0.85) {
         const headings = document.querySelectorAll('h1, h2');
         const randomHeading = headings[Math.floor(Math.random() * headings.length)];
         if (randomHeading) {
@@ -438,10 +454,11 @@ const RandomGlitch = {
       }
     }, 18000);
     
-    // Random screen flicker - very rare
+    // Random screen flicker - very rare, skip on mobile
     setInterval(() => {
+      if (window.innerWidth < 768) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (Math.random() > 0.95) { // Only 5% chance
+      if (Math.random() > 0.95) {
         document.body.style.opacity = '0.98';
         setTimeout(() => {
           document.body.style.opacity = '1';
