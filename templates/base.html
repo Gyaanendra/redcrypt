@@ -1527,6 +1527,122 @@
     #bg-video { display: none; }
   }
 
+  /* ===== MOBILE PERFORMANCE OPTIMIZATION ===== */
+  @media (max-width: 768px) {
+    /* Disable heavy animations on mobile */
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    /* Disable scanlines on mobile */
+    .scanlines::before {
+      display: none !important;
+    }
+    
+    .scanlines-container,
+    .scanlines-static,
+    .moving-scanline {
+      display: none !important;
+    }
+    
+    /* Disable retro-dots pattern on mobile */
+    .retro-dots {
+      background-image: none !important;
+    }
+    
+    /* Disable flicker effect */
+    .flicker,
+    .screen-flicker {
+      animation: none !important;
+    }
+    
+    /* Disable attract mode */
+    body.attract-mode {
+      animation: none !important;
+    }
+    
+    .attract-float,
+    .press-start-blink {
+      animation: none !important;
+    }
+    
+    /* Simplify hover effects on mobile */
+    .retro-btn:hover,
+    .retro-card:hover,
+    .pixel-border:hover {
+      transform: none !important;
+    }
+    
+    /* Disable glow effects */
+    .crt-glow,
+    .crt-glow-sm {
+      text-shadow: none !important;
+    }
+    
+    /* Disable drop shadows on hover */
+    .retro-btn:hover,
+    .retro-card:hover {
+      filter: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Disable neon flicker on buttons */
+    .retro-btn.bg-primary {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+    
+    /* Disable text glow animation */
+    .text-glow-animate {
+      animation: none !important;
+    }
+    
+    /* Disable score updates animation */
+    .score-updated {
+      animation: none !important;
+    }
+    
+    /* Simplify background on mobile */
+    body {
+      background-image: linear-gradient(180deg, #65350f 0%, #3f2308 100%) !important;
+      background-size: 100% 100% !important;
+      background-repeat: no-repeat !important;
+      background-attachment: scroll !important;
+      will-change: auto !important;
+    }
+    
+    body.light-theme {
+      background-image: linear-gradient(180deg, #ddcfb5 0%, #c9b99e 100%) !important;
+    }
+    
+    /* Remove will-change to save battery */
+    .retro-btn,
+    .retro-card,
+    h1, h2, h3 {
+      will-change: auto !important;
+      transform-style: flat !important;
+      backface-visibility: visible !important;
+    }
+    
+    /* Disable GPU hints on mobile */
+    .scanlines-container {
+      display: none !important;
+    }
+  }
+
+  /* GPU Acceleration for desktop animations */
+  @media (min-width: 769px) {
+    .retro-btn,
+    .retro-card,
+    .animated-element {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+
   </style>
   {% block head %}
   {% endblock head %}
