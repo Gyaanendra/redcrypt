@@ -97,7 +97,7 @@ Home
       <!-- Date -->
       <h1 class="text-3xl md:text-5xl font-pixel text-secondary crt-glow text-center scramble-text py-4 landing-animate"
         data-delay="4">
-        20th to 22nd Feb 2026
+        6th to 8th March 2026
       </h1>
 
       <!-- Tagline -->
@@ -108,7 +108,16 @@ Home
       </p>
 
       <!-- Action Buttons -->
-      <div class="button-container mt-8 landing-animate" data-delay="6">
+      <div class="flex justify-center mt-8 mb-4 landing-animate" data-delay="5">
+        <button
+          class="retro-btn bg-primary text-dark border-primary hover:bg-secondary py-4 px-12 flex items-center gap-3 font-bold text-lg"
+          onclick="window.location.href='{% url 'account_signup' %}'">
+          <i class="ph-bold ph-rocket text-dark"></i>
+          Register Now
+        </button>
+      </div>
+
+      <div class="button-container mt-4 landing-animate" data-delay="6">
         <button class="retro-btn bg-light text-dark border-light hover:bg-secondary py-4 px-8 flex items-center gap-3"
           onclick="window.location.href='{% url 'about' %}'">
           <i class="ph-bold ph-info text-accent"></i>
@@ -117,9 +126,9 @@ Home
         <button class="retro-btn bg-light text-dark border-light hover:bg-secondary py-4 px-8 flex items-center gap-3"
           onclick="window.location.href='{% url 'guidelines' %}'">
           <i class="ph-bold ph-question text-accent"></i>
-          Help
+          Guidelines
         </button>
-        <a href="/discord">
+        <a href="https://discord.gg/2W2GU5Fuv">
           <button
             class="retro-btn bg-primary text-dark border-primary hover:bg-secondary py-4 px-8 flex items-center gap-3">
             <i class="ph-bold ph-discord-logo text-accent"></i>
